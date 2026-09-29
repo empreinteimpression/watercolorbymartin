@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Aquarelle - Boutique d'Aquarelles Originales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdfbf7',
+                            100: '#f7f2e8',
+                            200: '#eee3d0',
+                            300: '#e0ccb0',
+                            400: '#cfb08b',
+                            500: '#bf9468',
+                            600: '#a87850',
+                            700: '#895f40',
+                            800: '#6f4e37',
+                            900: '#5a3f2e',
+                        },
+                        water: {
+                            rose: '#fbebeb',
+                            sage: '#eaf2ee',
+                            sky: '#eef5f8',
+                            lavender: '#f3f0f8'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .watercolor-bg {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e0ccb0 0.5px, transparent 0.5px), radial-gradient(#e0ccb0 0.5px, #fdfbf7 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 30px -10px rgba(191, 148, 104, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-brand-50 font-sans text-stone-800 antialiased selection:bg-brand-200 min-h-screen flex flex-col">
+
+    <!-- BANNIÈRE EN HAUT DE PAGE POUR LOGO / ENTÊTE COMPLETIÈREMENT PERSONNALISABLE -->
+    <div class="w-full bg-brand-100 border-b border-brand-200 relative overflow-hidden group">
+        <!-- Remplacer le lien de l'image src ci-dessous par l'URL de votre propre bannière logo si disponible -->
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center relative min-h-[140px] sm:min-h-[180px]">
+            <!-- Image de fond optionnelle si vous utilisez un grand visuel -->
+            <img id="banner-image" src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1600&q=80" alt="Bannière Atelier Aquarelle" class="absolute inset-0 w-full h-full object-cover opacity-20 transition-opacity duration-300">
+            
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 backdrop-blur shadow-md flex items-center justify-center border border-brand-300 mb-3">
+                    <i class="fa-solid fa-paint-brush text-brand-700 text-2xl sm:text-3xl"></i>
+                </div>
+                <h1 class="font-serif text-3xl sm:text-5xl font-semibold text-stone-900 tracking-wide">
+                    ATELIER AQUARELLE
+                </h1>
+                <p class="text-xs sm:text-sm text-brand-800 uppercase tracking-widest font-medium mt-1">
+                    Peintures originales, illustrations & marque-pages uniques
+                </p>
+            </div>
+            
+            <!-- Indication d'édition facile pour l'utilisateur -->
+            <div class="absolute bottom-2 right-2 bg-stone-900/60 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                Emplacement bannière / logo (modifiable dans le code HTML)
+            </div>
+        </div>
+    </div>
+
+    <!-- BARRE DE NAVIGATION FIXE -->
+    <header class="sticky top-0 z-40 bg-brand-50/95 backdrop-blur-md border-b border-brand-200/60 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="font-serif text-xl font-semibold text-stone-900 hover:text-brand-700 transition-colors">
+                <i class="fa-solid fa-palette text-brand-600 mr-2"></i> Boutique Officielle
+            </a>
+
+            <!-- Nav Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#galerie" class="text-stone-700 hover:text-brand-600 transition-colors">Galerie</a>
+                <a href="#a-propos" class="text-stone-700 hover:text-brand-600 transition-colors">L'Artiste</a>
+                <a href="#sur-mesure" class="text-stone-700 hover:text-brand-600 transition-colors">Sur-Mesure</a>
+                <a href="#contact" class="text-stone-700 hover:text-brand-600 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions Panier & Mobile Menu -->
+            <div class="flex items-center gap-3">
+                <button id="cart-btn" class="relative p-2.5 rounded-full bg-white border border-brand-200 text-stone-700 hover:bg-brand-100 transition-all shadow-sm flex items-center gap-2 px-4" aria-label="Voir le panier">
+                    <i class="fa-solid fa-bag-shopping text-brand-700"></i>
+                    <span class="text-xs font-semibold hidden sm:inline">Mon Panier</span>
+                    <span id="cart-badge" class="bg-brand-700 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-stone-700 hover:bg-brand-100 border border-brand-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-brand-200 bg-brand-50 px-4 py-3 space-y-2 text-sm">
+            <a href="#galerie" class="block py-2 text-stone-700 font-medium hover:text-brand-600">Galerie</a>
+            <a href="#a-propos" class="block py-2 text-stone-700 font-medium hover:text-brand-600">L'Artiste</a>
+            <a href="#sur-mesure" class="block py-2 text-stone-700 font-medium hover:text-brand-600">Sur-Mesure</a>
+            <a href="#contact" class="block py-2 text-stone-700 font-medium hover:text-brand-600">Contact</a>
+        </div>
+    </header>
+
+    <!-- SECTION HERO INTRODUCTIVE -->
+    <section class="py-12 sm:py-16 watercolor-bg border-b border-brand-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+            <span class="px-3.5 py-1 rounded-full bg-water-rose text-brand-800 text-xs font-semibold tracking-wider uppercase inline-block mb-4">
+                Œuvres originales réalisées à la main
+            </span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-stone-900 leading-tight mb-4">
+                Lumière, eau et émotions couchées sur papier.
+            </h2>
+            <p class="text-stone-600 text-base sm:text-lg font-light leading-relaxed mb-6">
+                Chaque réalisation est une création originale peinte sur du papier coton de haute qualité. Offrez ou offrez-vous une pièce unique d'artisanat.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#galerie" class="px-6 py-3 bg-brand-700 hover:bg-brand-800 text-white font-medium rounded-full shadow-md transition-all text-sm">
+                    Explorer la Galerie
+                </a>
+                <a href="#sur-mesure" class="px-6 py-3 bg-white hover:bg-brand-100 text-stone-800 font-medium rounded-full border border-brand-300 transition-all text-sm">
+                    Commande Spéciale
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION GALERIE AVEC LES NOUVELLES CATÉGORIES -->
+    <section id="galerie" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 mb-3">Galerie des Créations</h2>
+            <p class="text-stone-600 font-light text-sm sm:text-base">Sélectionnez une catégorie ci-dessous pour filtrer les œuvres disponibles.</p>
+            
+            <!-- NOUVELLES CATÉGORIES DEMANDÉES : Tout, Paysages, Animaux, Marque-pages -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6" id="filter-buttons">
+                <button data-filter="all" class="filter-btn active px-5 py-2 rounded-full text-sm font-medium transition-all bg-brand-700 text-white shadow-sm">
+                    Tout
+                </button>
+                <button data-filter="paysages" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all bg-white text-stone-700 hover:bg-brand-100 border border-brand-200">
+                    <i class="fa-solid fa-mountain-sun mr-1.5 text-xs text-brand-600"></i> Paysages
+                </button>
+                <button data-filter="animaux" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all bg-white text-stone-700 hover:bg-brand-100 border border-brand-200">
+                    <i class="fa-solid fa-paw mr-1.5 text-xs text-brand-600"></i> Animaux
+                </button>
+                <button data-filter="marque-pages" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all bg-white text-stone-700 hover:bg-brand-100 border border-brand-200">
+                    <i class="fa-solid fa-bookmark mr-1.5 text-xs text-brand-600"></i> Marque-pages
+                </button>
+            </div>
+        </div>
+
+        <!-- GRILLE DE PRODUITS/AQUARELLES -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="artwork-grid">
+            <!-- Les œuvres d'art sont injectées par JavaScript ci-dessous -->
+        </div>
+    </section>
+
+    <!-- SECTION À PROPOS DE L'ARTISTE -->
+    <section id="a-propos" class="py-16 bg-brand-100/60 border-y border-brand-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80" alt="Artiste dans son atelier d'aquarelle" class="rounded-2xl shadow-lg w-full h-[380px] object-cover">
+                        <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-md border border-brand-200 hidden sm:block">
+                            <p class="font-serif italic text-stone-800 text-sm">"L'art d'apprivoiser l'eau et les couleurs."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-600">Savoir-faire Artisanal</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-stone-900">Dans le Secret de l'Atelier</h2>
+                    <p class="text-stone-600 leading-relaxed font-light">
+                        Chaque aquarelle et chaque marque-page est peint à la main dans mon atelier. J'utilise uniquement des pigments extra-fins offrant une excellente tenue à la lumière, travaillés sur du papier pur coton 300g/m² d'une qualité exceptionnelle.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-4 text-center border-t border-brand-200">
+                        <div class="p-3 bg-white rounded-xl border border-brand-200/80 shadow-sm">
+                            <span class="block font-serif text-2xl font-bold text-brand-700">100%</span>
+                            <span class="text-xs text-stone-500">Original & Unique</span>
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-brand-200/80 shadow-sm">
+                            <span class="block font-serif text-2xl font-bold text-brand-700">300g</span>
+                            <span class="text-xs text-stone-500">Papier Coton Premium</span>
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-brand-200/80 shadow-sm">
+                            <span class="block font-serif text-2xl font-bold text-brand-700">France</span>
+                            <span class="text-xs text-stone-500">Envoi soigné</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION SUR-MESURE ET CONTACT -->
+    <section id="sur-mesure" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 bg-white rounded-3xl p-8 sm:p-12 border border-brand-200 soft-shadow">
+            <div class="lg:col-span-5 space-y-4">
+                <span class="px-3 py-1 rounded-full bg-water-sky text-stone-700 text-xs font-semibold uppercase">Sur-Mesure</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-stone-900">Une Commande Particulière ?</h2>
+                <p class="text-stone-600 font-light text-sm leading-relaxed">
+                    Vous souhaitez une peinture personnalisée d'un animal de compagnie, d'un paysage cher à votre cœur ou un lot de marque-pages sur un thème précis ? Remplissez ce formulaire et je vous répondrai rapidement.
+                </p>
+                <div class="space-y-3 text-stone-600 text-sm pt-2">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-600"></i>
+                        <span>Échanges sur votre projet & croquis préalable</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-600"></i>
+                        <span>Formats personnalisés (du A6 au A3)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-600"></i>
+                        <span>Certificat d'authenticité fourni</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7" id="contact">
+                <form id="contact-form" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-stone-700 mb-1">Votre Nom</label>
+                            <input type="text" required placeholder="Ex: Marie Dupont" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-stone-700 mb-1">Votre Email</label>
+                            <input type="email" required placeholder="Ex: marie@exemple.fr" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-stone-700 mb-1">Type de demande</label>
+                        <select class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm bg-white">
+                            <option>Commande de Paysage sur-mesure</option>
+                            <option>Portrait d'Animal de compagnie</option>
+                            <option>Série de Marque-pages personnalisés</option>
+                            <option>Autre question ou renseignement</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-stone-700 mb-1">Votre Message</label>
+                        <textarea rows="4" required placeholder="Décrivez votre projet (dimensions, couleurs, détails souhaités)..." class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-brand-700 hover:bg-brand-800 text-white font-medium rounded-xl shadow transition-all text-sm">
+                        <i class="fa-regular fa-paper-plane mr-2"></i> Envoyer ma demande
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANIER LATÉRAL INTERACTIF (SLIDE-OVER) -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="cart-backdrop" class="absolute inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <!-- Header Cart -->
+                <div class="p-6 border-b border-stone-100 flex items-center justify-between bg-brand-50">
+                    <h3 class="font-serif text-xl font-semibold text-stone-900">Mon Panier</h3>
+                    <button id="close-cart-btn" class="p-2 text-stone-400 hover:text-stone-600 rounded-full">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Items list -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Vide par défaut, rempli par JS -->
+                </div>
+
+                <!-- Footer Cart -->
+                <div class="p-6 border-t border-stone-100 bg-brand-50/50 space-y-4">
+                    <div class="flex justify-between text-base font-medium text-stone-900">
+                        <span>Total (hors livraison)</span>
+                        <span id="cart-total" class="font-serif font-bold text-brand-700 text-xl">0,00 €</span>
+                    </div>
+                    <p class="text-xs text-stone-500">Livraison calculée lors de la validation.</p>
+                    <button id="checkout-btn" class="w-full py-3.5 bg-brand-700 hover:bg-brand-800 text-white font-medium rounded-xl shadow-md transition-all text-sm">
+                        Valider la Commande
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALE PHOTO ET DÉTAILS -->
+    <div id="image-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/80 backdrop-blur-sm hidden">
+        <div class="relative bg-white rounded-2xl overflow-hidden max-w-3xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl">
+            <button id="close-modal-btn" class="absolute top-3 right-3 z-10 w-9 h-9 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-stone-700 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="md:w-1/2 bg-stone-100 flex items-center justify-center p-4">
+                <img id="modal-img" src="" alt="" class="max-h-[60vh] md:max-h-[80vh] w-auto object-contain rounded-lg">
+            </div>
+            <div class="md:w-1/2 p-6 flex flex-col justify-between">
+                <div>
+                    <span id="modal-category" class="text-xs font-semibold uppercase tracking-wider text-brand-600"></span>
+                    <h3 id="modal-title" class="font-serif text-2xl font-bold text-stone-900 mt-1"></h3>
+                    <p id="modal-dimensions" class="text-xs text-stone-500 mt-1"></p>
+                    <p id="modal-price" class="text-xl font-bold text-brand-700 font-serif mt-3"></p>
+                    <p id="modal-desc" class="text-stone-600 text-sm mt-4 leading-relaxed font-light"></p>
+                </div>
+                <div class="mt-6">
+                    <button id="modal-add-btn" class="w-full py-3 bg-brand-700 hover:bg-brand-800 text-white font-medium rounded-xl shadow transition-all text-sm">
+                        Ajouter au panier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <p class="font-serif text-2xl text-stone-200">Atelier Aquarelle</p>
+            <p class="text-xs text-stone-400 font-light max-w-md mx-auto">
+                Toutes les œuvres d'art présentées sont protégées par le droit d'auteur. Reproductions interdites.
+            </p>
+            <div class="flex justify-center gap-6 text-lg pt-2">
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-pinterest"></i></a>
+            </div>
+            <p class="text-xs text-stone-600 pt-4">© <span id="year"></span> Atelier Aquarelle - Boutique hébergée sur GitHub Pages</p>
+        </div>
+    </footer>
+
+    <!-- LOGIQUE JAVASCRIPT ET DONNÉES PRODUITS -->
+    <script>
+        // BASE DE DONNÉES DES AQUARELLES (Catégories: paysages, animaux, marque-pages)
+        const artworks = [
+            {
+                id: 1,
+                title: "Brumes sur le Lac",
+                category: "paysages",
+                categoryLabel: "Paysage",
+                price: 85,
+                dimensions: "Format A4 (21 x 29.7 cm)",
+                tech: "Aquarelle extra-fine sur papier coton 300g",
+                desc: "Une composition apaisante capturant les nuances bleutées et dorées d'un matin brumeux au bord de l'eau.",
+                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 2,
+                title: "Renard Curieux",
+                category: "animaux",
+                categoryLabel: "Animal",
+                price: 65,
+                dimensions: "Format A5 (14.8 x 21 cm)",
+                tech: "Aquarelle & détail à l'encre sur papier 300g",
+                desc: "Un portrait d'un jeune renard roux aux tons chauds, peint avec délicatesse et spontanéité.",
+                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 3,
+                title: "Duo Marque-pages 'Botanique'",
+                category: "marque-pages",
+                categoryLabel: "Marque-pages",
+                price: 18,
+                dimensions: "Lot de 2 (5 x 18 cm chacun)",
+                tech: "Aquarelle originale plastifiée & ruban satin",
+                desc: "Deux marque-pages originaux uniques ornés de feuillages d'eucalyptus et de fleurs sauvages.",
+                image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 4,
+                title: "Coucher de soleil Alpin",
+                category: "paysages",
+                categoryLabel: "Paysage",
+                price: 110,
+                dimensions: "Format A3 (29.7 x 42 cm)",
+                tech: "Aquarelle originale pur coton",
+                desc: "Les sommets enneigés s'illuminent sous les reflets de la fin de journée. Pièce majeure de la collection.",
+                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 5,
+                title: "Mésange Bleue sur Branche",
+                category: "animaux",
+                categoryLabel: "Animal",
+                price: 55,
+                dimensions: "Format A5 (14.8 x 21 cm)",
+                tech: "Aquarelle sur papier grain fin",
+                desc: "Élégante mésange peinte avec finesse dans des nuances de bleu outremer et jaune ocre.",
+                image: "https://images.unsplash.com/photo-1522926193341-e9ffd686c60f?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 6,
+                title: "Marque-page 'Nuit Étoilée'",
+                category: "marque-pages",
+                categoryLabel: "Marque-pages",
+                price: 12,
+                dimensions: "Unité (5 x 18 cm)",
+                tech: "Aquarelle indigo & touches d'or",
+                desc: "Marque-page original unique représentant une nuit étoilée réhaussée à la peinture dorée brillante.",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        // ÉTAT DE L'APPLICATION
+        let cart = JSON.parse(localStorage.getItem('watercolor_cart') || '[]');
+        let activeFilter = 'all';
+
+        // ÉLÉMENTS DOM
+        const artworkGrid = document.getElementById('artwork-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cartBtn = document.getElementById('cart-btn');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const closeCartBtn = document.getElementById('close-cart-btn');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotal = document.getElementById('cart-total');
+        const cartBadge = document.getElementById('cart-badge');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        // Modal Elements
+        const imageModal = document.getElementById('image-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCategory = document.getElementById('modal-category');
+        const modalDimensions = document.getElementById('modal-dimensions');
+        const modalPrice = document.getElementById('modal-price');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalAddBtn = document.getElementById('modal-add-btn');
+
+        let currentModalArtwork = null;
+
+        // INITIALISATION
+        document.getElementById('year').textContent = new Date().getFullYear();
+        renderArtworks();
+        updateCartUI();
+
+        // GESTION DE LA GALERIE & FILTRES
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-brand-700', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-white', 'text-stone-700');
+                });
+                btn.classList.remove('bg-white', 'text-stone-700');
+                btn.classList.add('bg-brand-700', 'text-white', 'shadow-sm');
+
+                activeFilter = btn.getAttribute('data-filter');
+                renderArtworks();
+            });
+        });
+
+        function renderArtworks() {
+            artworkGrid.innerHTML = '';
+            const filtered = activeFilter === 'all' 
+                ? artworks 
+                : artworks.filter(item => item.category === activeFilter);
+
+            if (filtered.length === 0) {
+                artworkGrid.innerHTML = `<p class="col-span-full text-center py-12 text-stone-500 font-light">Aucune création disponible pour le moment dans cette catégorie.</p>`;
+                return;
+            }
+
+            filtered.forEach(art => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl overflow-hidden border border-brand-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group";
+                card.innerHTML = `
+                    <div class="relative overflow-hidden cursor-pointer h-64 bg-stone-100" onclick="openModal(${art.id})">
+                        <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur text-stone-800 text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                            ${art.categoryLabel}
+                        </span>
+                        <div class="absolute inset-0 bg-stone-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 text-stone-800 text-xs px-3 py-1.5 rounded-full font-medium shadow-md">
+                                <i class="fa-regular fa-eye mr-1"></i> Zoomer
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1 justify-between space-y-4">
+                        <div>
+                            <h3 class="font-serif font-semibold text-stone-900 text-lg hover:text-brand-700 transition-colors cursor-pointer" onclick="openModal(${art.id})">${art.title}</h3>
+                            <p class="text-xs text-stone-500 mt-0.5">${art.dimensions}</p>
+                            <p class="text-xs text-stone-600 mt-2 font-light line-clamp-2">${art.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-stone-100">
+                            <span class="font-serif text-xl font-bold text-brand-700">${art.price} €</span>
+                            <button onclick="addToCart(${art.id})" class="px-4 py-2 bg-brand-100 hover:bg-brand-700 text-brand-800 hover:text-white rounded-xl text-xs font-semibold transition-all">
+                                <i class="fa-solid fa-plus mr-1"></i> Panier
+                            </button>
+                        </div>
+                    </div>
+                `;
+                artworkGrid.appendChild(card);
+            });
+        }
+
+        // GESTION DU MODAL DÉTAILS
+        window.openModal = function(id) {
+            const art = artworks.find(a => a.id === id);
+            if (!art) return;
+            currentModalArtwork = art;
+            modalImg.src = art.image;
+            modalTitle.textContent = art.title;
+            modalCategory.textContent = art.categoryLabel;
+            modalDimensions.textContent = `${art.dimensions} — ${art.tech}`;
+            modalPrice.textContent = `${art.price},00 €`;
+            modalDesc.textContent = art.desc;
+            imageModal.classList.remove('hidden');
+        };
+
+        closeModalBtn.addEventListener('click', () => imageModal.classList.add('hidden'));
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) imageModal.classList.add('hidden');
+        });
+
+        modalAddBtn.addEventListener('click', () => {
+            if (currentModalArtwork) {
+                addToCart(currentModalArtwork.id);
+                imageModal.classList.add('hidden');
+            }
+        });
+
+        // GESTION DU PANIER
+        window.addToCart = function(id) {
+            const art = artworks.find(a => a.id === id);
+            if (!art) return;
+
+            const existingIndex = cart.findIndex(item => item.id === id);
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({ ...art, qty: 1 });
+            }
+
+            saveCart();
+            updateCartUI();
+            openCartDrawer();
+        };
+
+        window.removeFromCart = function(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartUI();
+        };
+
+        window.changeQty = function(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                removeFromCart(id);
+            } else {
+                saveCart();
+                updateCartUI();
+            }
+        };
+
+        function saveCart() {
+            localStorage.setItem('watercolor_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            cartBadge.textContent = totalCount;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-stone-400">
+                        <i class="fa-solid fa-bag-shopping text-4xl mb-3 opacity-40"></i>
+                        <p class="text-sm font-light">Votre panier est encore vide.</p>
+                    </div>
+                `;
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="flex items-center gap-4 p-3 bg-stone-50 rounded-xl border border-stone-100">
+                        <img src="${item.image}" alt="${item.title}" class="w-16 h-16 object-cover rounded-lg">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-serif text-sm font-semibold text-stone-900 truncate">${item.title}</h4>
+                            <p class="text-xs text-brand-700 font-medium">${item.price} €</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 rounded bg-white border border-stone-200 text-stone-600 flex items-center justify-center text-xs">-</button>
+                                <span class="text-xs font-semibold px-1">${item.qty}</span>
+                                <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 rounded bg-white border border-stone-200 text-stone-600 flex items-center justify-center text-xs">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-stone-400 hover:text-red-500 p-2">
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            cartTotal.textContent = `${totalPrice.toFixed(2).replace('.', ',')} €`;
+        }
+
+        function openCartDrawer() {
+            cartDrawer.classList.remove('hidden');
+        }
+
+        function closeCartDrawer() {
+            cartDrawer.classList.add('hidden');
+        }
+
+        cartBtn.addEventListener('click', openCartDrawer);
+        closeCartBtn.addEventListener('click', closeCartDrawer);
+        cartBackdrop.addEventListener('click', closeCartDrawer);
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) return;
+            alert("Merci pour votre commande ! Il s'agit d'une démonstration du site. En configurant Stripe ou PayPal, vos clients pourront régler directement ici.");
+        });
+
+        // MENU MOBILE TOGGLE
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // FORMULAIRE DE CONTACT
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Votre message a bien été envoyé ! L'artiste vous répondra dans les plus brefs délais.");
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
