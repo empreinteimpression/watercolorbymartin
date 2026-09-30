@@ -1,4 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Atelier Aquarelle — Œuvres originales & créations</title>
+
+    <meta
+        name="description"
+        content="Découvrez mes aquarelles originales, mes créations personnalisées et mon guide du débutant pour apprendre l'aquarelle."
+    >
+
+    <!-- =========================================================
+         TAILWIND
+    ========================================================== -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- =========================================================
+         FONT AWESOME
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================================================
+         GOOGLE FONTS
+    ========================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         CONFIG TAILWIND
+    ========================================================== -->
+
+    <script>
+
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    colors: {
+
+                        ink: "#292724",
+
+                        inkSoft: "#38332e",
+
+                        paper: "#e8e0d2",
+
+                        paperLight: "#f3ede3",
+
+                        cream: "#f7f2e9",
+
+                        brown: "#756252",
+
+                        brownDark: "#57493d",
+
+                        sage: "#697064",
+
+                        rose: "#a98f88"
+
+                    },
+
+
+                    fontFamily: {
+
+                        display: [
+                            "Cormorant Garamond",
+                            "serif"
+                        ],
+
+                        sans: [
+                            "Plus Jakarta Sans",
+                            "sans-serif"
+                        ]
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+
+    <!-- =========================================================
+         STYLE
+    ========================================================== -->
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            background: #e8e0d2;
+
+            color: #292724;
+
+            font-family:
+                "Plus Jakarta Sans",
+                sans-serif;
+
+        }
+
+
+        h1,
+        h2,
+        h3,
+        h4 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+        }
+
+
+        .paper-texture {
+
+            background-image:
+
+                radial-gradient(
+                    rgba(80, 65, 50, 0.055) 0.7px,
+                    transparent 0.7px
+                );
+
+            background-size: 8px 8px;
+
+        }
+
+
+        .glass {
+
+            background:
+                rgba(247, 242, 233, 0.84);
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+        }
+
+
+        .soft-shadow {
+
+            box-shadow:
+                0 20px 50px
+                rgba(45, 37, 30, 0.14);
+
+        }
+
+
+        .art-card {
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .art-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 25px 50px
+                rgba(45, 37, 30, 0.16);
+
+        }
+
+
+        .art-image {
+
+            transition:
+                transform 0.6s ease;
+
+        }
+
+
+        .art-card:hover .art-image {
+
+            transform:
+                scale(1.04);
+
+        }
+
+
+        .nav-link {
+
+            position: relative;
+
+        }
+
+
+        .nav-link::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: -6px;
+
+            width: 0;
+
+            height: 1px;
+
+            background: #756252;
+
+            transition:
+                width 0.3s ease;
+
+        }
+
+
+        .nav-link:hover::after {
+
+            width: 100%;
+
+        }
+
+
+        /* =====================================================
+           MOBILE MENU
+        ====================================================== */
+
+        .mobile-menu {
+
+            display: none;
+
+        }
+
+
+        .mobile-menu.open {
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           PANIER
+        ====================================================== */
+
+        .cart-drawer {
+
+            transform:
+                translateX(100%);
+
+            transition:
+                transform 0.35s ease;
+
+        }
+
+
+        .cart-drawer.open {
+
+            transform:
+                translateX(0);
+
+        }
+
+
+        /* =====================================================
+           TOAST
+        ====================================================== */
+
+        .toast {
+
+            transform:
+                translate(-50%, 120px);
+
+            opacity: 0;
+
+            transition:
+                all 0.35s ease;
+
+        }
+
+
+        .toast.show {
+
+            transform:
+                translate(-50%, 0);
+
+            opacity: 1;
+
+        }
+
+
+        /* =====================================================
+           MODAL PRODUIT
+        ====================================================== */
+
+        .product-modal-bg {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 70;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .product-modal-bg.open {
+
+            display: flex;
+
+        }
+
+
+        /* IMAGE FLOUTÉE EN ARRIÈRE-PLAN */
+
+        .product-modal-background {
+
+            position: absolute;
+
+            inset: -50px;
+
+            background-position:
+                center;
+
+            background-size:
+                cover;
+
+            background-repeat:
+                no-repeat;
+
+            filter:
+                blur(32px);
+
+            transform:
+                scale(1.12);
+
+            opacity:
+                0.48;
+
+        }
+
+
+        /* VOILE PAR-DESSUS L'IMAGE */
+
+        .product-modal-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                rgba(25, 22, 19, 0.70);
+
+            backdrop-filter:
+                blur(4px);
+
+            -webkit-backdrop-filter:
+                blur(4px);
+
+        }
+
+
+        /* FICHE PRODUIT */
+
+        .product-modal-card {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            max-width: 1050px;
+
+            max-height: 92vh;
+
+            overflow-y: auto;
+
+            background:
+                #e8e0d2;
+
+            border-radius:
+                24px;
+
+            box-shadow:
+                0 30px 100px
+                rgba(0, 0, 0, 0.45);
+
+            animation:
+                productModalIn
+                0.35s
+                ease
+                both;
+
+        }
+
+
+        @keyframes productModalIn {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.96)
+                    translateY(15px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ====================================================== */
+
+        ::-webkit-scrollbar {
+
+            width: 8px;
+
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background:
+                #e8e0d2;
+
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background:
+                #756252;
+
+            border-radius:
+                20px;
+
+        }
+
+    </style>
+
+</head>
+
+
 <body class="paper-texture">
+
 
     <!-- =========================================================
          BANNIÈRE / LOGO
@@ -6,31 +507,52 @@
 
     <div class="w-full bg-ink">
 
-        <!--
-            REMPLACE CE BLOC PAR TON IMAGE QUAND TU L'AURAS.
 
-            Exemple :
+        <!--
+
+            REMPLACE CE BLOC PAR TA FUTURE BANNIÈRE.
+
+            Quand tu auras ton image :
+
             <img
                 src="images/banniere.jpg"
                 alt="Atelier Aquarelle"
-                class="w-full h-32 md:h-44 object-cover"
+                class="w-full h-28 md:h-40 object-cover"
             >
+
         -->
 
-        <div class="h-28 md:h-40 flex items-center justify-center px-6">
+
+        <div
+            class="h-28 md:h-40 flex items-center justify-center px-6"
+        >
 
             <div class="text-center text-paperLight">
 
-                <div class="text-xs uppercase tracking-[0.35em] text-paper/50 mb-2">
+                <div
+                    class="text-xs uppercase tracking-[0.35em] text-paper/50 mb-2"
+                >
+
                     Atelier
+
                 </div>
 
-                <div class="font-display text-4xl md:text-5xl">
+
+                <div
+                    class="font-display text-4xl md:text-5xl"
+                >
+
                     Ton logo / ta bannière ici
+
                 </div>
 
-                <div class="text-xs text-paper/40 mt-2">
+
+                <div
+                    class="text-xs text-paper/40 mt-2"
+                >
+
                     Remplace cet emplacement par ton visuel
+
                 </div>
 
             </div>
@@ -40,12 +562,3126 @@
     </div>
 
 
+
     <!-- =========================================================
          TOP BAR
     ========================================================== -->
 
-    <div class="bg-brownDark text-paperLight text-center text-xs tracking-wide py-2 px-4">
+    <div
+        class="bg-brownDark text-paperLight text-center text-xs tracking-wide py-2 px-4"
+    >
 
-        Aquarelles originales • Créations uniques • Guide d'aquarelle pour débutants
+        Aquarelles originales • Pièces uniques • Guide d'aquarelle pour débutants
 
     </div>
+
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header
+        class="bg-paper/95 backdrop-blur-md sticky top-0 z-40 border-b border-brown/10"
+    >
+
+        <div
+            class="max-w-7xl mx-auto px-5 lg:px-8"
+        >
+
+            <div
+                class="h-20 flex items-center justify-between"
+            >
+
+
+                <!-- LOGO -->
+
+                <a
+                    href="#accueil"
+                    class="flex items-center gap-3"
+                >
+
+                    <div
+                        class="w-11 h-11 rounded-full bg-brownDark text-paperLight flex items-center justify-center"
+                    >
+
+                        <i class="fa-solid fa-droplet"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div
+                            class="font-display text-2xl font-semibold leading-none"
+                        >
+
+                            Atelier Aquarelle
+
+                        </div>
+
+
+                        <div
+                            class="text-[10px] uppercase tracking-[0.25em] text-brown mt-1"
+                        >
+
+                            Peinture & création
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- NAVIGATION -->
+
+                <nav
+                    class="hidden md:flex items-center gap-8 text-sm"
+                >
+
+                    <a
+                        href="#galerie"
+                        class="nav-link"
+                    >
+                        Galerie
+                    </a>
+
+
+                    <a
+                        href="#atelier"
+                        class="nav-link"
+                    >
+                        L'atelier
+                    </a>
+
+
+                    <a
+                        href="#guide"
+                        class="nav-link"
+                    >
+                        Mon guide
+                    </a>
+
+
+                    <a
+                        href="#commande"
+                        class="nav-link"
+                    >
+                        Sur mesure
+                    </a>
+
+
+                    <a
+                        href="#contact"
+                        class="nav-link"
+                    >
+                        Contact
+                    </a>
+
+                </nav>
+
+
+
+                <!-- ACTIONS -->
+
+                <div
+                    class="flex items-center gap-3"
+                >
+
+                    <button
+                        onclick="openCart()"
+                        aria-label="Ouvrir le panier"
+                        class="relative w-11 h-11 rounded-full border border-brown/20 flex items-center justify-center hover:bg-paperLight transition"
+                    >
+
+                        <i
+                            class="fa-solid fa-bag-shopping text-sm"
+                        ></i>
+
+
+                        <span
+                            id="cartCount"
+                            class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-brownDark text-paperLight text-[10px] flex items-center justify-center"
+                        >
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        id="mobileMenuButton"
+                        onclick="toggleMobileMenu()"
+                        class="md:hidden w-11 h-11 rounded-full border border-brown/20 flex items-center justify-center"
+                        aria-label="Menu"
+                    >
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MENU MOBILE -->
+
+            <div
+                id="mobileMenu"
+                class="mobile-menu md:hidden pb-5"
+            >
+
+                <div
+                    class="flex flex-col gap-4 text-sm"
+                >
+
+                    <a
+                        href="#galerie"
+                        onclick="closeMobileMenu()"
+                    >
+                        Galerie
+                    </a>
+
+
+                    <a
+                        href="#atelier"
+                        onclick="closeMobileMenu()"
+                    >
+                        L'atelier
+                    </a>
+
+
+                    <a
+                        href="#guide"
+                        onclick="closeMobileMenu()"
+                    >
+                        Mon guide
+                    </a>
+
+
+                    <a
+                        href="#commande"
+                        onclick="closeMobileMenu()"
+                    >
+                        Sur mesure
+                    </a>
+
+
+                    <a
+                        href="#contact"
+                        onclick="closeMobileMenu()"
+                    >
+                        Contact
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         CONTENU
+    ========================================================== -->
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section
+            id="accueil"
+            class="relative overflow-hidden"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8 py-16 lg:py-24"
+            >
+
+                <div
+                    class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+                >
+
+
+                    <!-- TEXTE -->
+
+                    <div>
+
+                        <div
+                            class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-brown mb-5"
+                        >
+
+                            <span
+                                class="w-8 h-px bg-brown"
+                            ></span>
+
+                            Bienvenue dans mon univers
+
+                        </div>
+
+
+                        <h1
+                            class="text-6xl md:text-7xl lg:text-8xl leading-[0.82] font-medium mb-7"
+                        >
+
+                            Lumière,
+
+                            <br>
+
+                            eau &
+
+                            <br>
+
+                            <span class="text-brown">
+                                émotions.
+                            </span>
+
+                        </h1>
+
+
+                        <p
+                            class="text-brownDark/80 max-w-xl leading-8 text-base md:text-lg mb-9"
+                        >
+
+                            Des aquarelles originales peintes à la main,
+                            inspirées par les paysages, les animaux et
+                            les petits détails qui rendent notre quotidien
+                            plus poétique.
+
+                        </p>
+
+
+                        <div
+                            class="flex flex-wrap gap-3"
+                        >
+
+                            <a
+                                href="#galerie"
+                                class="inline-flex items-center gap-3 bg-ink text-paperLight px-6 py-3.5 rounded-full hover:bg-brownDark transition"
+                            >
+
+                                Découvrir les œuvres
+
+                                <i
+                                    class="fa-solid fa-arrow-down text-xs"
+                                ></i>
+
+                            </a>
+
+
+                            <a
+                                href="#guide"
+                                class="inline-flex items-center gap-3 border border-brown/30 px-6 py-3.5 rounded-full hover:bg-paperLight transition"
+                            >
+
+                                Découvrir mon guide
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- IMAGE -->
+
+                    <div class="relative">
+
+                        <div
+                            class="absolute -top-6 -right-5 w-28 h-28 rounded-full bg-rose/30 blur-2xl"
+                        ></div>
+
+
+                        <div
+                            class="absolute -bottom-8 -left-8 w-40 h-40 rounded-full bg-sage/20 blur-3xl"
+                        ></div>
+
+
+                        <div
+                            class="relative rounded-[2rem] overflow-hidden soft-shadow border border-white/30"
+                        >
+
+                            <img
+                                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=85"
+                                alt="Atelier artistique"
+                                class="w-full h-[500px] lg:h-[620px] object-cover"
+                            >
+
+
+                            <div
+                                class="absolute bottom-5 left-5 right-5 glass rounded-2xl p-5"
+                            >
+
+                                <div
+                                    class="flex items-center justify-between"
+                                >
+
+                                    <div>
+
+                                        <p
+                                            class="font-display text-2xl"
+                                        >
+                                            Dans l'atelier
+                                        </p>
+
+
+                                        <p
+                                            class="text-xs text-brown mt-1"
+                                        >
+                                            Peindre lentement, observer davantage.
+                                        </p>
+
+                                    </div>
+
+
+                                    <div
+                                        class="w-11 h-11 rounded-full bg-paperLight flex items-center justify-center"
+                                    >
+
+                                        <i
+                                            class="fa-solid fa-paintbrush text-brown"
+                                        ></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             BANDEAU
+        ====================================================== -->
+
+        <section
+            class="border-y border-brown/10 bg-paperLight/60"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-brown/10"
+                >
+
+
+                    <div
+                        class="py-7 md:px-8 flex items-center gap-4"
+                    >
+
+                        <i
+                            class="fa-solid fa-palette text-brown text-xl"
+                        ></i>
+
+
+                        <div>
+
+                            <p
+                                class="font-semibold text-sm"
+                            >
+                                Peint à la main
+                            </p>
+
+
+                            <p
+                                class="text-xs text-brown mt-1"
+                            >
+                                Chaque pièce est unique
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div
+                        class="py-7 md:px-8 flex items-center gap-4"
+                    >
+
+                        <i
+                            class="fa-solid fa-box text-brown text-xl"
+                        ></i>
+
+
+                        <div>
+
+                            <p
+                                class="font-semibold text-sm"
+                            >
+                                Expédition soignée
+                            </p>
+
+
+                            <p
+                                class="text-xs text-brown mt-1"
+                            >
+                                Emballage adapté aux œuvres
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div
+                        class="py-7 md:px-8 flex items-center gap-4"
+                    >
+
+                        <i
+                            class="fa-solid fa-heart text-brown text-xl"
+                        ></i>
+
+
+                        <div>
+
+                            <p
+                                class="font-semibold text-sm"
+                            >
+                                Créations avec passion
+                            </p>
+
+
+                            <p
+                                class="text-xs text-brown mt-1"
+                            >
+                                Directement depuis l'atelier
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GALERIE
+        ====================================================== -->
+
+        <section
+            id="galerie"
+            class="py-20 lg:py-28"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+
+                <div
+                    class="flex flex-col md:flex-row md:items-end justify-between gap-7 mb-12"
+                >
+
+                    <div>
+
+                        <div
+                            class="text-xs uppercase tracking-[0.22em] text-brown mb-3"
+                        >
+                            La collection
+                        </div>
+
+
+                        <h2
+                            class="text-5xl md:text-6xl"
+                        >
+                            Œuvres originales
+                        </h2>
+
+
+                        <p
+                            class="text-brownDark/70 mt-4 max-w-xl"
+                        >
+
+                            Des pièces uniques peintes à l'aquarelle.
+                            Chaque œuvre existe en un seul exemplaire.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- FILTRES -->
+
+                    <div
+                        class="flex flex-wrap gap-2"
+                    >
+
+                        <button
+                            onclick="filterArt('all', this)"
+                            class="filter-btn bg-ink text-paperLight px-4 py-2 rounded-full text-xs"
+                        >
+                            Tout
+                        </button>
+
+
+                        <button
+                            onclick="filterArt('paysages', this)"
+                            class="filter-btn border border-brown/20 px-4 py-2 rounded-full text-xs"
+                        >
+                            Paysages
+                        </button>
+
+
+                        <button
+                            onclick="filterArt('animaux', this)"
+                            class="filter-btn border border-brown/20 px-4 py-2 rounded-full text-xs"
+                        >
+                            Animaux
+                        </button>
+
+
+                        <button
+                            onclick="filterArt('marque-pages', this)"
+                            class="filter-btn border border-brown/20 px-4 py-2 rounded-full text-xs"
+                        >
+                            Marque-pages
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    id="artworksGrid"
+                    class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ATELIER
+        ====================================================== -->
+
+        <section
+            id="atelier"
+            class="py-20 lg:py-28 bg-ink text-paperLight"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+                >
+
+
+                    <!-- IMAGE ATELIER -->
+
+                    <div class="relative">
+
+                        <div
+                            class="absolute -inset-4 border border-paperLight/10 rounded-[2rem]"
+                        ></div>
+
+
+                        <div
+                            class="relative rounded-[1.7rem] overflow-hidden"
+                        >
+
+                            <img
+                                src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1200&q=85"
+                                alt="Atelier de peinture"
+                                class="w-full h-[520px] object-cover"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TEXTE -->
+
+                    <div>
+
+                        <div
+                            class="text-xs uppercase tracking-[0.22em] text-paper/50 mb-4"
+                        >
+                            Mon atelier
+                        </div>
+
+
+                        <h2
+                            class="text-5xl md:text-6xl leading-none mb-7"
+                        >
+
+                            Là où les idées
+
+                            <br>
+
+                            prennent vie.
+
+                        </h2>
+
+
+                        <div
+                            class="space-y-5 text-paper/70 leading-8"
+                        >
+
+                            <p>
+
+                                Bienvenue dans mon atelier, l'endroit où
+                                je transforme mes observations et mes
+                                inspirations en aquarelles.
+
+                            </p>
+
+
+                            <p>
+
+                                J'aime travailler lentement, laisser l'eau
+                                circuler sur le papier et accepter la part
+                                d'imprévu qui fait tout le charme de cette
+                                technique.
+
+                            </p>
+
+
+                            <p>
+
+                                Chaque peinture est réalisée à la main,
+                                avec l'envie de transmettre une atmosphère
+                                plutôt qu'une simple image.
+
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="mt-9 flex items-center gap-5"
+                        >
+
+                            <div
+                                class="w-12 h-12 rounded-full border border-paperLight/20 flex items-center justify-center"
+                            >
+
+                                <i
+                                    class="fa-solid fa-droplet text-paper/60"
+                                ></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <p
+                                    class="font-display text-2xl"
+                                >
+                                    Aquarelle originale
+                                </p>
+
+
+                                <p
+                                    class="text-xs text-paper/50 mt-1"
+                                >
+                                    Peinte avec patience et spontanéité
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GUIDE DU DÉBUTANT
+        ====================================================== -->
+
+        <section
+            id="guide"
+            class="py-20 lg:py-28"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="rounded-[2rem] bg-paperLight border border-brown/10 overflow-hidden"
+                >
+
+                    <div
+                        class="grid lg:grid-cols-2"
+                    >
+
+
+                        <!-- VISUEL -->
+
+                        <div
+                            class="min-h-[520px] bg-brownDark relative overflow-hidden"
+                        >
+
+                            <img
+                                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=85"
+                                alt="Illustration du guide d'aquarelle"
+                                class="absolute inset-0 w-full h-full object-cover opacity-50"
+                            >
+
+
+                            <div
+                                class="absolute inset-0 bg-ink/50"
+                            ></div>
+
+
+                            <!-- FAUSSE COUVERTURE -->
+
+                            <div
+                                class="absolute inset-0 flex items-center justify-center"
+                            >
+
+                                <div
+                                    class="bg-paperLight text-ink w-64 md:w-72 min-h-[390px] shadow-2xl p-8 rotate-[-3deg]"
+                                >
+
+                                    <div
+                                        class="text-[9px] uppercase tracking-[0.3em] text-brown mb-8"
+                                    >
+                                        Atelier Aquarelle
+                                    </div>
+
+
+                                    <div
+                                        class="font-display text-5xl leading-[0.85]"
+                                    >
+
+                                        Le guide
+
+                                        <br>
+
+                                        du débutant
+
+                                    </div>
+
+
+                                    <div
+                                        class="w-16 h-px bg-brown mt-8"
+                                    ></div>
+
+
+                                    <p
+                                        class="text-sm text-brown mt-6 leading-6"
+                                    >
+
+                                        Apprendre l'aquarelle
+                                        pas à pas, de zéro
+                                        jusqu'à ses premières
+                                        créations.
+
+                                    </p>
+
+
+                                    <div
+                                        class="mt-10 text-5xl text-brown/50"
+                                    >
+
+                                        <i
+                                            class="fa-solid fa-palette"
+                                        ></i>
+
+                                    </div>
+
+
+                                    <div
+                                        class="mt-8 text-[10px] uppercase tracking-widest text-brown"
+                                    >
+                                        Guide numérique
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- TEXTE -->
+
+                        <div
+                            class="p-8 md:p-12 lg:p-16 flex flex-col justify-center"
+                        >
+
+                            <div
+                                class="text-xs uppercase tracking-[0.22em] text-brown mb-4"
+                            >
+                                Mon guide d'aquarelle
+                            </div>
+
+
+                            <h2
+                                class="text-5xl md:text-6xl leading-[0.9] mb-7"
+                            >
+
+                                Le guide
+
+                                <br>
+
+                                du débutant
+
+                            </h2>
+
+
+                            <p
+                                class="text-lg text-brownDark/80 leading-8 mb-5"
+                            >
+
+                                J'ai créé ce guide de A à Z pour accompagner
+                                celles et ceux qui souhaitent se lancer dans
+                                l'aquarelle sans savoir par où commencer.
+
+                            </p>
+
+
+                            <p
+                                class="text-brownDark/70 leading-7 mb-7"
+                            >
+
+                                Matériel, premières techniques, couleurs,
+                                gestes, conseils et exercices : tout est réuni
+                                dans un seul guide pour découvrir l'aquarelle
+                                progressivement et prendre confiance dans
+                                sa pratique.
+
+                            </p>
+
+
+
+                            <!-- AVANTAGES -->
+
+                            <div
+                                class="grid sm:grid-cols-2 gap-3 mb-8"
+                            >
+
+                                <div
+                                    class="flex items-start gap-3"
+                                >
+
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-paper flex items-center justify-center shrink-0"
+                                    >
+
+                                        <i
+                                            class="fa-solid fa-check text-brown text-xs"
+                                        ></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <p
+                                            class="text-sm font-semibold"
+                                        >
+                                            Pour débuter
+                                        </p>
+
+
+                                        <p
+                                            class="text-xs text-brown mt-1"
+                                        >
+                                            Aucun niveau nécessaire
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div
+                                    class="flex items-start gap-3"
+                                >
+
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-paper flex items-center justify-center shrink-0"
+                                    >
+
+                                        <i
+                                            class="fa-solid fa-check text-brown text-xs"
+                                        ></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <p
+                                            class="text-sm font-semibold"
+                                        >
+                                            Créé de A à Z
+                                        </p>
+
+
+                                        <p
+                                            class="text-xs text-brown mt-1"
+                                        >
+                                            Ton guide personnel
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div
+                                    class="flex items-start gap-3"
+                                >
+
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-paper flex items-center justify-center shrink-0"
+                                    >
+
+                                        <i
+                                            class="fa-solid fa-check text-brown text-xs"
+                                        ></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <p
+                                            class="text-sm font-semibold"
+                                        >
+                                            Progressif
+                                        </p>
+
+
+                                        <p
+                                            class="text-xs text-brown mt-1"
+                                        >
+                                            Étape par étape
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div
+                                    class="flex items-start gap-3"
+                                >
+
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-paper flex items-center justify-center shrink-0"
+                                    >
+
+                                        <i
+                                            class="fa-solid fa-check text-brown text-xs"
+                                        ></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <p
+                                            class="text-sm font-semibold"
+                                        >
+                                            Format PDF
+                                        </p>
+
+
+                                        <p
+                                            class="text-xs text-brown mt-1"
+                                        >
+                                            Ordinateur ou tablette
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- PRIX -->
+
+                            <div
+                                class="flex flex-wrap items-center gap-6"
+                            >
+
+                                <div>
+
+                                    <div
+                                        class="font-display text-5xl"
+                                    >
+                                        15 €
+                                    </div>
+
+
+                                    <div
+                                        class="text-xs text-brown mt-1"
+                                    >
+                                        Guide numérique PDF
+                                    </div>
+
+                                </div>
+
+
+                                <button
+                                    onclick="addToCart('pdf-guide')"
+                                    class="inline-flex items-center gap-3 bg-ink text-paperLight px-7 py-4 rounded-full hover:bg-brownDark transition"
+                                >
+
+                                    <i
+                                        class="fa-solid fa-cart-plus"
+                                    ></i>
+
+                                    Acheter le guide
+
+                                </button>
+
+                            </div>
+
+
+                            <p
+                                class="text-[10px] text-brown mt-5"
+                            >
+
+                                Téléchargement numérique après paiement.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             COMMANDE SUR MESURE
+        ====================================================== -->
+
+        <section
+            id="commande"
+            class="py-20 lg:py-28 bg-paperLight/60"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="grid lg:grid-cols-2 gap-12 lg:gap-20"
+                >
+
+
+                    <!-- TEXTE -->
+
+                    <div>
+
+                        <div
+                            class="text-xs uppercase tracking-[0.22em] text-brown mb-4"
+                        >
+                            Une idée particulière ?
+                        </div>
+
+
+                        <h2
+                            class="text-5xl md:text-6xl leading-none mb-6"
+                        >
+
+                            Une peinture
+
+                            <br>
+
+                            sur mesure.
+
+                        </h2>
+
+
+                        <p
+                            class="text-brownDark/70 leading-8 max-w-lg"
+                        >
+
+                            Tu souhaites offrir une aquarelle personnalisée
+                            ou faire peindre un paysage, un animal ou un lieu
+                            qui te tient à cœur ?
+
+                        </p>
+
+
+                        <div
+                            class="mt-8 space-y-4"
+                        >
+
+
+                            <div
+                                class="flex gap-4"
+                            >
+
+                                <div
+                                    class="w-9 h-9 rounded-full bg-paper flex items-center justify-center shrink-0"
+                                >
+                                    1
+                                </div>
+
+
+                                <div>
+
+                                    <p
+                                        class="font-semibold text-sm"
+                                    >
+                                        Tu m'expliques ton idée
+                                    </p>
+
+
+                                    <p
+                                        class="text-xs text-brown mt-1"
+                                    >
+                                        Format, sujet, couleurs...
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div
+                                class="flex gap-4"
+                            >
+
+                                <div
+                                    class="w-9 h-9 rounded-full bg-paper flex items-center justify-center shrink-0"
+                                >
+                                    2
+                                </div>
+
+
+                                <div>
+
+                                    <p
+                                        class="font-semibold text-sm"
+                                    >
+                                        Nous échangeons
+                                    </p>
+
+
+                                    <p
+                                        class="text-xs text-brown mt-1"
+                                    >
+                                        Je te propose une idée adaptée.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div
+                                class="flex gap-4"
+                            >
+
+                                <div
+                                    class="w-9 h-9 rounded-full bg-paper flex items-center justify-center shrink-0"
+                                >
+                                    3
+                                </div>
+
+
+                                <div>
+
+                                    <p
+                                        class="font-semibold text-sm"
+                                    >
+                                        Je peins ton projet
+                                    </p>
+
+
+                                    <p
+                                        class="text-xs text-brown mt-1"
+                                    >
+                                        Chaque commande est réalisée à la main.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FORMULAIRE -->
+
+                    <div
+                        class="bg-paper rounded-[1.7rem] p-7 md:p-9 soft-shadow"
+                    >
+
+                        <form
+                            id="customForm"
+                            onsubmit="submitCustomForm(event)"
+                        >
+
+                            <div
+                                class="grid md:grid-cols-2 gap-5"
+                            >
+
+                                <div>
+
+                                    <label
+                                        class="text-xs font-semibold"
+                                    >
+                                        Prénom
+                                    </label>
+
+
+                                    <input
+                                        type="text"
+                                        required
+                                        class="mt-2 w-full bg-paperLight border border-brown/15 rounded-xl px-4 py-3 outline-none focus:border-brown"
+                                    >
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <label
+                                        class="text-xs font-semibold"
+                                    >
+                                        Email
+                                    </label>
+
+
+                                    <input
+                                        type="email"
+                                        required
+                                        class="mt-2 w-full bg-paperLight border border-brown/15 rounded-xl px-4 py-3 outline-none focus:border-brown"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div
+                                class="mt-5"
+                            >
+
+                                <label
+                                    class="text-xs font-semibold"
+                                >
+                                    Ton projet
+                                </label>
+
+
+                                <textarea
+                                    rows="6"
+                                    required
+                                    placeholder="Décris-moi ton idée..."
+                                    class="mt-2 w-full bg-paperLight border border-brown/15 rounded-xl px-4 py-3 outline-none focus:border-brown resize-none"
+                                ></textarea>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="mt-5 w-full bg-ink text-paperLight py-3.5 rounded-xl hover:bg-brownDark transition"
+                            >
+
+                                Envoyer ma demande
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section
+            id="contact"
+            class="py-20 lg:py-28"
+        >
+
+            <div
+                class="max-w-4xl mx-auto px-5 text-center"
+            >
+
+                <div
+                    class="text-xs uppercase tracking-[0.22em] text-brown mb-4"
+                >
+                    Contact
+                </div>
+
+
+                <h2
+                    class="text-5xl md:text-6xl mb-6"
+                >
+                    Parlons de ton projet
+                </h2>
+
+
+                <p
+                    class="text-brownDark/70 max-w-xl mx-auto leading-8"
+                >
+
+                    Une question sur une œuvre, une commande personnalisée
+                    ou mon guide d'aquarelle ?
+
+                    Écris-moi.
+
+                </p>
+
+
+                <div
+                    class="mt-8 flex flex-wrap justify-center gap-3"
+                >
+
+                    <a
+                        href="mailto:bonjour@atelier-aquarelle.fr"
+                        class="inline-flex items-center gap-3 border border-brown/20 px-6 py-3 rounded-full hover:bg-paperLight transition"
+                    >
+
+                        <i
+                            class="fa-regular fa-envelope"
+                        ></i>
+
+                        bonjour@atelier-aquarelle.fr
+
+                    </a>
+
+
+                    <a
+                        href="#galerie"
+                        class="inline-flex items-center gap-3 bg-ink text-paperLight px-6 py-3 rounded-full hover:bg-brownDark transition"
+                    >
+
+                        Voir les œuvres
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer
+        class="bg-ink text-paperLight"
+    >
+
+        <div
+            class="max-w-7xl mx-auto px-5 lg:px-8 py-12"
+        >
+
+            <div
+                class="grid md:grid-cols-3 gap-10"
+            >
+
+
+                <div>
+
+                    <div
+                        class="font-display text-3xl mb-3"
+                    >
+                        Atelier Aquarelle
+                    </div>
+
+
+                    <p
+                        class="text-paper/50 text-sm leading-6 max-w-sm"
+                    >
+
+                        Aquarelles originales, créations personnalisées
+                        et guide numérique pour découvrir l'aquarelle.
+
+                    </p>
+
+                </div>
+
+
+
+                <div>
+
+                    <p
+                        class="font-semibold text-sm mb-4"
+                    >
+                        Navigation
+                    </p>
+
+
+                    <div
+                        class="space-y-2 text-sm text-paper/60"
+                    >
+
+                        <a
+                            href="#galerie"
+                            class="block hover:text-paper"
+                        >
+                            Galerie
+                        </a>
+
+
+                        <a
+                            href="#atelier"
+                            class="block hover:text-paper"
+                        >
+                            L'atelier
+                        </a>
+
+
+                        <a
+                            href="#guide"
+                            class="block hover:text-paper"
+                        >
+                            Mon guide
+                        </a>
+
+
+                        <a
+                            href="#commande"
+                            class="block hover:text-paper"
+                        >
+                            Sur mesure
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <div>
+
+                    <p
+                        class="font-semibold text-sm mb-4"
+                    >
+                        Informations
+                    </p>
+
+
+                    <div
+                        class="space-y-2 text-sm text-paper/60"
+                    >
+
+                        <a
+                            href="#"
+                            class="block hover:text-paper"
+                        >
+                            Mentions légales
+                        </a>
+
+
+                        <a
+                            href="#"
+                            class="block hover:text-paper"
+                        >
+                            Conditions de vente
+                        </a>
+
+
+                        <a
+                            href="#"
+                            class="block hover:text-paper"
+                        >
+                            Politique de confidentialité
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="border-t border-paperLight/10 mt-10 pt-7 text-xs text-paper/40 flex flex-col md:flex-row justify-between gap-3"
+            >
+
+                <span>
+                    © 2026 Atelier Aquarelle. Tous droits réservés.
+                </span>
+
+
+                <span>
+                    Fait avec de l'eau, du papier et beaucoup de patience.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         PANIER
+    ========================================================== -->
+
+    <div
+        id="cartOverlay"
+        class="fixed inset-0 bg-black/40 z-50 hidden"
+        onclick="closeCart()"
+    ></div>
+
+
+
+    <aside
+        id="cartDrawer"
+        class="cart-drawer fixed top-0 right-0 h-full w-full sm:w-[430px] bg-paper z-[60] shadow-2xl flex flex-col"
+    >
+
+
+        <div
+            class="p-6 border-b border-brown/10 flex items-center justify-between"
+        >
+
+            <div>
+
+                <p
+                    class="text-xs uppercase tracking-[0.2em] text-brown"
+                >
+                    Votre sélection
+                </p>
+
+
+                <h2
+                    class="text-3xl"
+                >
+                    Panier
+                </h2>
+
+            </div>
+
+
+            <button
+                onclick="closeCart()"
+                class="w-10 h-10 rounded-full border border-brown/15 flex items-center justify-center"
+                aria-label="Fermer le panier"
+            >
+
+                <i
+                    class="fa-solid fa-xmark"
+                ></i>
+
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="cartItems"
+            class="flex-1 overflow-y-auto p-6"
+        ></div>
+
+
+
+        <div
+            class="border-t border-brown/10 p-6"
+        >
+
+            <div
+                class="flex justify-between items-center mb-4"
+            >
+
+                <span
+                    class="text-sm text-brown"
+                >
+                    Total
+                </span>
+
+
+                <strong
+                    id="cartTotal"
+                    class="font-display text-3xl"
+                >
+                    0,00 €
+                </strong>
+
+            </div>
+
+
+            <button
+                onclick="checkout()"
+                class="w-full bg-ink text-paperLight py-4 rounded-xl hover:bg-brownDark transition"
+            >
+
+                Passer au paiement
+
+            </button>
+
+
+            <p
+                class="text-[10px] text-center text-brown mt-3"
+            >
+
+                Paiement sécurisé à connecter avant la mise en ligne.
+
+            </p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================================
+         MODAL PRODUIT IMMERSIF
+    ========================================================== -->
+
+    <div
+        id="productModal"
+        class="product-modal-bg"
+        onclick="closeProductModalFromBackground(event)"
+    >
+
+
+        <!-- IMAGE FLOUTÉE -->
+
+        <div
+            id="productModalBackground"
+            class="product-modal-background"
+        ></div>
+
+
+        <!-- VOILE SOMBRE -->
+
+        <div
+            class="product-modal-overlay"
+        ></div>
+
+
+        <!-- FICHE -->
+
+        <div
+            id="productModalContent"
+            class="product-modal-card"
+        ></div>
+
+
+        <!-- FERMER -->
+
+        <button
+            onclick="closeProductModal()"
+            class="absolute top-5 right-5 md:top-8 md:right-8 z-[80] w-11 h-11 rounded-full bg-paper text-ink shadow-xl flex items-center justify-center hover:bg-paperLight transition"
+            aria-label="Fermer"
+        >
+
+            <i
+                class="fa-solid fa-xmark"
+            ></i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+
+    <div
+        id="toast"
+        class="toast fixed bottom-5 left-1/2 z-[100] bg-ink text-paperLight px-5 py-3 rounded-full shadow-xl text-sm"
+    ></div>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+
+        /* ========================================================
+           PRODUITS
+        ======================================================== */
+
+        const artworks = [
+
+
+            {
+                id: "aquarelle-01",
+
+                title: "Lumière sur la rivière",
+
+                category: "paysages",
+
+                price: 85,
+
+                type: "original",
+
+                image:
+                    "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85",
+
+                description:
+                    "Une aquarelle originale inspirée par la lumière douce d'un paysage au bord de l'eau."
+
+            },
+
+
+            {
+                id: "aquarelle-02",
+
+                title: "Forêt silencieuse",
+
+                category: "paysages",
+
+                price: 95,
+
+                type: "original",
+
+                image:
+                    "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=85",
+
+                description:
+                    "Une atmosphère douce et mystérieuse entre lumière, arbres et végétation."
+
+            },
+
+
+            {
+                id: "aquarelle-03",
+
+                title: "Le petit renard",
+
+                category: "animaux",
+
+                price: 75,
+
+                type: "original",
+
+                image:
+                    "https://images.unsplash.com/photo-1516934024742-b461fba47600?auto=format&fit=crop&w=1000&q=85",
+
+                description:
+                    "Un portrait animalier réalisé à l'aquarelle, avec une attention particulière aux détails."
+
+            },
+
+
+            {
+                id: "aquarelle-04",
+
+                title: "Matin d'automne",
+
+                category: "paysages",
+
+                price: 110,
+
+                type: "original",
+
+                image:
+                    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=85",
+
+                description:
+                    "Une promenade imaginaire aux couleurs chaudes de l'automne."
+
+            },
+
+
+            {
+                id: "aquarelle-05",
+
+                title: "Botanique",
+
+                category: "marque-pages",
+
+                price: 25,
+
+                type: "original",
+
+                image:
+                    "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=85",
+
+                description:
+                    "Une petite création botanique délicate, idéale comme marque-page."
+
+            },
+
+
+            {
+                id: "aquarelle-06",
+
+                title: "Bleu tranquille",
+
+                category: "marque-pages",
+
+                price: 25,
+
+                type: "original",
+
+                image:
+                    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85",
+
+                description:
+                    "Une petite création inspirée par les paysages marins et les nuances de bleu."
+
+            },
+
+
+            {
+                id: "pdf-guide",
+
+                title: "Le guide du débutant",
+
+                category: "numerique",
+
+                price: 15,
+
+                type: "pdf",
+
+                image:
+                    "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1000&q=85",
+
+                description:
+                    "Mon guide complet pour débuter l'aquarelle, créé de A à Z pour accompagner les débutants."
+
+            }
+
+        ];
+
+
+
+        /* ========================================================
+           PANIER
+        ======================================================== */
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem("atelierCart")
+            ) || [];
+
+
+
+        /* ========================================================
+           GALERIE
+        ======================================================== */
+
+        function renderArtworks(category = "all") {
+
+
+            const grid =
+                document.getElementById(
+                    "artworksGrid"
+                );
+
+
+            let products =
+                artworks.filter(
+                    product =>
+                        product.type === "original"
+                );
+
+
+            if (category !== "all") {
+
+                products =
+                    products.filter(
+                        product =>
+                            product.category === category
+                    );
+
+            }
+
+
+            grid.innerHTML =
+                products.map(product => `
+
+
+                    <article
+                        class="art-card bg-paperLight rounded-2xl overflow-hidden border border-brown/10"
+                    >
+
+
+                        <button
+                            onclick="openProductModal('${product.id}')"
+                            class="relative block w-full overflow-hidden text-left"
+                            aria-label="Voir ${product.title}"
+                        >
+
+
+                            <img
+                                src="${product.image}"
+                                alt="${product.title}"
+                                class="art-image w-full h-[380px] object-cover"
+                                loading="lazy"
+                            >
+
+
+                            <div
+                                class="absolute top-4 left-4"
+                            >
+
+                                <span
+                                    class="bg-paperLight/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[10px] uppercase tracking-wider"
+                                >
+
+                                    Pièce unique
+
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-paperLight/90 flex items-center justify-center"
+                            >
+
+                                <i
+                                    class="fa-solid fa-expand text-brown text-xs"
+                                ></i>
+
+                            </div>
+
+
+                        </button>
+
+
+
+                        <div
+                            class="p-5"
+                        >
+
+
+                            <div
+                                class="flex items-start justify-between gap-4"
+                            >
+
+
+                                <div>
+
+                                    <h3
+                                        class="text-2xl"
+                                    >
+                                        ${product.title}
+                                    </h3>
+
+
+                                    <p
+                                        class="text-xs text-brown mt-1"
+                                    >
+                                        ${product.description}
+                                    </p>
+
+                                </div>
+
+
+                                <div
+                                    class="font-display text-2xl whitespace-nowrap"
+                                >
+                                    ${formatPrice(product.price)}
+                                </div>
+
+                            </div>
+
+
+
+                            <button
+                                onclick="addToCart('${product.id}')"
+                                class="mt-5 w-full bg-ink text-paperLight py-3 rounded-xl hover:bg-brownDark transition text-sm"
+                            >
+
+                                <i
+                                    class="fa-solid fa-bag-shopping mr-2"
+                                ></i>
+
+                                Ajouter au panier
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                `).join("");
+
+        }
+
+
+
+        /* ========================================================
+           FILTRES
+        ======================================================== */
+
+        function filterArt(category, button) {
+
+
+            document
+                .querySelectorAll(".filter-btn")
+                .forEach(btn => {
+
+                    btn.classList.remove(
+                        "bg-ink",
+                        "text-paperLight"
+                    );
+
+                    btn.classList.add(
+                        "border",
+                        "border-brown/20"
+                    );
+
+                });
+
+
+            button.classList.remove(
+                "border",
+                "border-brown/20"
+            );
+
+
+            button.classList.add(
+                "bg-ink",
+                "text-paperLight"
+            );
+
+
+            renderArtworks(category);
+
+        }
+
+
+
+        /* ========================================================
+           PRIX
+        ======================================================== */
+
+        function formatPrice(price) {
+
+            return new Intl.NumberFormat(
+                "fr-FR",
+                {
+                    style: "currency",
+                    currency: "EUR"
+                }
+            ).format(price);
+
+        }
+
+
+
+        /* ========================================================
+           AJOUT PANIER
+        ======================================================== */
+
+        function addToCart(productId) {
+
+
+            const product =
+                artworks.find(
+                    item =>
+                        item.id === productId
+                );
+
+
+            if (!product) return;
+
+
+            /*
+             * Chaque produit ne peut être ajouté
+             * qu'une seule fois.
+             *
+             * Pour les originaux :
+             * une seule pièce existe.
+             *
+             * Pour le PDF :
+             * inutile de l'ajouter plusieurs fois.
+             */
+
+            if (
+                cart.some(
+                    item =>
+                        item.id === productId
+                )
+            ) {
+
+                showToast(
+                    "Cet article est déjà dans ton panier."
+                );
+
+                openCart();
+
+                return;
+
+            }
+
+
+            cart.push({
+
+                id: product.id,
+
+                quantity: 1
+
+            });
+
+
+            saveCart();
+
+
+            showToast(
+                "Ajouté au panier."
+            );
+
+
+            openCart();
+
+        }
+
+
+
+        /* ========================================================
+           RETIRER PANIER
+        ======================================================== */
+
+        function removeFromCart(productId) {
+
+
+            cart =
+                cart.filter(
+                    item =>
+                        item.id !== productId
+                );
+
+
+            saveCart();
+
+
+            renderCart();
+
+        }
+
+
+
+        /* ========================================================
+           SAUVEGARDER PANIER
+        ======================================================== */
+
+        function saveCart() {
+
+
+            localStorage.setItem(
+                "atelierCart",
+                JSON.stringify(cart)
+            );
+
+
+            renderCart();
+
+        }
+
+
+
+        /* ========================================================
+           AFFICHER PANIER
+        ======================================================== */
+
+        function renderCart() {
+
+
+            const container =
+                document.getElementById(
+                    "cartItems"
+                );
+
+
+            const count =
+                document.getElementById(
+                    "cartCount"
+                );
+
+
+            const totalElement =
+                document.getElementById(
+                    "cartTotal"
+                );
+
+
+            if (cart.length === 0) {
+
+
+                container.innerHTML = `
+
+                    <div
+                        class="h-full flex flex-col items-center justify-center text-center"
+                    >
+
+                        <div
+                            class="w-16 h-16 rounded-full bg-paperLight flex items-center justify-center mb-5"
+                        >
+
+                            <i
+                                class="fa-solid fa-bag-shopping text-brown"
+                            ></i>
+
+                        </div>
+
+
+                        <h3
+                            class="text-3xl"
+                        >
+                            Ton panier est vide
+                        </h3>
+
+
+                        <p
+                            class="text-sm text-brown mt-2"
+                        >
+                            Découvre les créations disponibles.
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                count.textContent = "0";
+
+
+                totalElement.textContent =
+                    "0,00 €";
+
+
+                return;
+
+            }
+
+
+
+            let total = 0;
+
+
+
+            container.innerHTML =
+                cart.map(item => {
+
+
+                    const product =
+                        artworks.find(
+                            product =>
+                                product.id === item.id
+                        );
+
+
+                    if (!product) return "";
+
+
+                    total +=
+                        product.price;
+
+
+
+                    return `
+
+                        <div
+                            class="flex gap-4 py-4 border-b border-brown/10"
+                        >
+
+
+                            <img
+                                src="${product.image}"
+                                alt="${product.title}"
+                                class="w-20 h-24 object-cover rounded-lg"
+                            >
+
+
+                            <div
+                                class="flex-1"
+                            >
+
+
+                                <div
+                                    class="flex justify-between gap-3"
+                                >
+
+
+                                    <div>
+
+                                        <h4
+                                            class="text-xl"
+                                        >
+                                            ${product.title}
+                                        </h4>
+
+
+                                        <p
+                                            class="text-xs text-brown mt-1"
+                                        >
+
+                                            ${
+                                                product.type === "pdf"
+                                                    ? "Produit numérique"
+                                                    : "Pièce unique"
+                                            }
+
+                                        </p>
+
+                                    </div>
+
+
+                                    <strong
+                                        class="font-display text-xl"
+                                    >
+                                        ${formatPrice(product.price)}
+                                    </strong>
+
+                                </div>
+
+
+
+                                <button
+                                    onclick="removeFromCart('${product.id}')"
+                                    class="text-xs text-brown hover:text-ink mt-3"
+                                >
+
+                                    Retirer
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }).join("");
+
+
+            count.textContent =
+                cart.length;
+
+
+            totalElement.textContent =
+                formatPrice(total);
+
+        }
+
+
+
+        /* ========================================================
+           OUVRIR PANIER
+        ======================================================== */
+
+        function openCart() {
+
+
+            document
+                .getElementById("cartOverlay")
+                .classList.remove("hidden");
+
+
+            document
+                .getElementById("cartDrawer")
+                .classList.add("open");
+
+        }
+
+
+
+        /* ========================================================
+           FERMER PANIER
+        ======================================================== */
+
+        function closeCart() {
+
+
+            document
+                .getElementById("cartDrawer")
+                .classList.remove("open");
+
+
+            document
+                .getElementById("cartOverlay")
+                .classList.add("hidden");
+
+        }
+
+
+
+        /* ========================================================
+           OUVRIR FICHE PRODUIT
+        ======================================================== */
+
+        function openProductModal(productId) {
+
+
+            const product =
+                artworks.find(
+                    item =>
+                        item.id === productId
+                );
+
+
+            if (!product) return;
+
+
+            const modal =
+                document.getElementById(
+                    "productModal"
+                );
+
+
+            const content =
+                document.getElementById(
+                    "productModalContent"
+                );
+
+
+            const background =
+                document.getElementById(
+                    "productModalBackground"
+                );
+
+
+
+            /*
+             * Même image en arrière-plan.
+             */
+
+            background.style.backgroundImage =
+                `url("${product.image}")`;
+
+
+
+            /*
+             * Fiche produit.
+             */
+
+            content.innerHTML = `
+
+
+                <div
+                    class="grid md:grid-cols-2"
+                >
+
+
+                    <!-- IMAGE NETTE -->
+
+                    <div
+                        class="bg-ink"
+                    >
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.title}"
+                            class="w-full h-[420px] md:h-[600px] object-cover"
+                        >
+
+                    </div>
+
+
+
+                    <!-- INFORMATIONS -->
+
+                    <div
+                        class="p-7 md:p-10 lg:p-12 flex flex-col justify-center"
+                    >
+
+
+                        <div
+                            class="text-xs uppercase tracking-[0.22em] text-brown mb-4"
+                        >
+
+                            ${
+                                product.type === "pdf"
+                                    ? "Création numérique"
+                                    : "Œuvre originale"
+                            }
+
+                        </div>
+
+
+
+                        <h2
+                            class="font-display text-5xl md:text-6xl leading-[0.9] mb-6"
+                        >
+
+                            ${product.title}
+
+                        </h2>
+
+
+
+                        <p
+                            class="text-brownDark/75 leading-8 mb-7"
+                        >
+
+                            ${product.description}
+
+                        </p>
+
+
+
+                        ${
+                            product.type === "pdf"
+
+                            ? `
+
+                                <div
+                                    class="space-y-4 mb-8"
+                                >
+
+
+                                    <div
+                                        class="flex items-center gap-3 text-sm"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-paperLight flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                class="fa-solid fa-file-pdf text-brown"
+                                            ></i>
+
+                                        </div>
+
+
+                                        <span>
+                                            Guide au format PDF
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <div
+                                        class="flex items-center gap-3 text-sm"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-paperLight flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                class="fa-solid fa-download text-brown"
+                                            ></i>
+
+                                        </div>
+
+
+                                        <span>
+                                            Téléchargement après paiement
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <div
+                                        class="flex items-center gap-3 text-sm"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-paperLight flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                class="fa-solid fa-book-open text-brown"
+                                            ></i>
+
+                                        </div>
+
+
+                                        <span>
+                                            Guide créé de A à Z
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            `
+
+                            : `
+
+                                <div
+                                    class="space-y-4 mb-8"
+                                >
+
+
+                                    <div
+                                        class="flex items-center gap-3 text-sm"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-paperLight flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                class="fa-solid fa-palette text-brown"
+                                            ></i>
+
+                                        </div>
+
+
+                                        <span>
+                                            Peinture réalisée à la main
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <div
+                                        class="flex items-center gap-3 text-sm"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-paperLight flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                class="fa-solid fa-star text-brown"
+                                            ></i>
+
+                                        </div>
+
+
+                                        <span>
+                                            Pièce unique
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <div
+                                        class="flex items-center gap-3 text-sm"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-paperLight flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                class="fa-solid fa-box text-brown"
+                                            ></i>
+
+                                        </div>
+
+
+                                        <span>
+                                            Expédition soigneusement emballée
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            `
+
+                        }
+
+
+
+                        <!-- PRIX -->
+
+                        <div
+                            class="flex items-end gap-4 mb-6"
+                        >
+
+                            <div
+                                class="font-display text-5xl"
+                            >
+
+                                ${formatPrice(product.price)}
+
+                            </div>
+
+
+                            <div
+                                class="text-xs text-brown pb-2"
+                            >
+
+                                ${
+                                    product.type === "pdf"
+                                        ? "Produit numérique"
+                                        : "Pièce unique"
+                                }
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PANIER -->
+
+                        <button
+                            onclick="addToCart('${product.id}'); closeProductModal();"
+                            class="w-full bg-ink text-paperLight py-4 rounded-xl hover:bg-brownDark transition"
+                        >
+
+                            <i
+                                class="fa-solid fa-bag-shopping mr-2"
+                            ></i>
+
+
+                            ${
+                                product.type === "pdf"
+                                    ? "Ajouter le guide au panier"
+                                    : "Ajouter l'œuvre au panier"
+                            }
+
+                        </button>
+
+
+
+                        <button
+                            onclick="closeProductModal()"
+                            class="w-full mt-3 border border-brown/20 py-4 rounded-xl hover:bg-paperLight transition"
+                        >
+
+                            Continuer ma visite
+
+                        </button>
+
+
+
+                        ${
+                            product.type === "original"
+
+                            ? `
+
+                                <p
+                                    class="text-[10px] text-center text-brown mt-4"
+                                >
+
+                                    Chaque aquarelle originale est disponible
+                                    en un seul exemplaire.
+
+                                </p>
+
+                            `
+
+                            : `
+
+                                <p
+                                    class="text-[10px] text-center text-brown mt-4"
+                                >
+
+                                    Le fichier numérique sera accessible
+                                    après confirmation du paiement.
+
+                                </p>
+
+                            `
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+
+            /*
+             * OUVERTURE
+             */
+
+            modal.classList.add("open");
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+
+        /* ========================================================
+           FERMER FICHE PRODUIT
+        ======================================================== */
+
+        function closeProductModal() {
+
+
+            const modal =
+                document.getElementById(
+                    "productModal"
+                );
+
+
+            modal.classList.remove(
+                "open"
+            );
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+
+        /* ========================================================
+           FERMER EN CLIQUANT SUR LE FOND
+        ======================================================== */
+
+        function closeProductModalFromBackground(event) {
+
+
+            if (
+                event.target.id ===
+                "productModal"
+            ) {
+
+                closeProductModal();
+
+            }
+
+        }
+
+
+
+        /* ========================================================
+           MENU MOBILE
+        ======================================================== */
+
+        function toggleMobileMenu() {
+
+
+            document
+                .getElementById("mobileMenu")
+                .classList.toggle("open");
+
+        }
+
+
+
+        function closeMobileMenu() {
+
+
+            document
+                .getElementById("mobileMenu")
+                .classList.remove("open");
+
+        }
+
+
+
+        /* ========================================================
+           FORMULAIRE
+        ======================================================== */
+
+        function submitCustomForm(event) {
+
+
+            event.preventDefault();
+
+
+            showToast(
+                "Merci ! Ta demande est prête à être envoyée."
+            );
+
+
+            event.target.reset();
+
+        }
+
+
+
+        /* ========================================================
+           PAIEMENT
+        ======================================================== */
+
+        function checkout() {
+
+
+            if (cart.length === 0) {
+
+
+                showToast(
+                    "Ton panier est vide."
+                );
+
+
+                return;
+
+            }
+
+
+
+            /*
+             * POUR L'INSTANT :
+             * démonstration uniquement.
+             *
+             * PLUS TARD :
+             * ce bouton appellera Stripe Checkout.
+             *
+             * Ne jamais placer de clé secrète Stripe
+             * dans ce fichier HTML.
+             */
+
+
+            showToast(
+                "Le paiement sera activé lors de la mise en ligne."
+            );
+
+        }
+
+
+
+        /* ========================================================
+           TOAST
+        ======================================================== */
+
+        let toastTimer;
+
+
+        function showToast(message) {
+
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+
+            toast.textContent =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            clearTimeout(
+                toastTimer
+            );
+
+
+            toastTimer =
+                setTimeout(() => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                }, 2800);
+
+        }
+
+
+
+        /* ========================================================
+           TOUCHE ESCAPE
+        ======================================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeCart();
+
+                    closeProductModal();
+
+                    closeMobileMenu();
+
+                }
+
+            }
+        );
+
+
+
+        /* ========================================================
+           INITIALISATION
+        ======================================================== */
+
+        renderArtworks();
+
+        renderCart();
+
+    </script>
+
+
+</body>
+</html>
