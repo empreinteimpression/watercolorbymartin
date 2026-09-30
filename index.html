@@ -5,25 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Atelier Aquarelle — Aquarelles originales</title>
-  <meta name="description" content="Découvrez mes aquarelles originales, mes créations personnalisées et mon guide du débutant pour apprendre l'aquarelle.">
 
-  <!-- Tailwind -->
+  <meta
+    name="description"
+    content="Découvrez mes aquarelles originales, mes créations personnalisées et mon guide du débutant pour apprendre l'aquarelle."
+  >
+
+  <!-- =====================================================
+       TAILWIND
+  ====================================================== -->
+
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Google Fonts -->
+  <!-- =====================================================
+       FONT AWESOME
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+
+  <!-- =====================================================
+       GOOGLE FONTS
+  ====================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =====================================================
+       TAILWIND CONFIG
+  ====================================================== -->
 
   <script>
+
     tailwind.config = {
+
       theme: {
+
         extend: {
+
           colors: {
+
             ink: "#292724",
             inkSoft: "#38332e",
             paper: "#e8e0d2",
@@ -33,21 +69,35 @@
             brownDark: "#57493d",
             sage: "#697064",
             rose: "#a98f88"
+
           },
+
           fontFamily: {
+
             display: ["Cormorant Garamond", "serif"],
             sans: ["Plus Jakarta Sans", "sans-serif"]
+
           }
+
         }
+
       }
-    }
+
+    };
+
   </script>
+
+
+  <!-- =====================================================
+       STYLE
+  ====================================================== -->
 
   <style>
 
     html {
       scroll-behavior: smooth;
     }
+
 
     body {
       margin: 0;
@@ -56,6 +106,7 @@
       font-family: "Plus Jakarta Sans", sans-serif;
     }
 
+
     h1,
     h2,
     h3,
@@ -63,335 +114,567 @@
       font-family: "Cormorant Garamond", serif;
     }
 
+
     ::selection {
       background: #a98f88;
       color: #292724;
     }
 
-    /* =========================
+
+    /* =====================================================
        BOUTONS
-    ========================= */
+    ====================================================== */
 
     .btn-primary {
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+
       background: #e8e0d2;
       color: #292724;
+
       padding: 13px 22px;
+
       border-radius: 999px;
+
       font-weight: 600;
+
       transition: all .25s ease;
+
       cursor: pointer;
+
       border: none;
+
     }
+
 
     .btn-primary:hover {
+
       background: #f7f2e9;
+
       transform: translateY(-2px);
+
     }
 
+
     .btn-secondary {
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+
       background: transparent;
+
       color: #f3ede3;
+
       padding: 12px 21px;
+
       border-radius: 999px;
+
       font-weight: 500;
+
       border: 1px solid rgba(243,237,227,.35);
+
       transition: all .25s ease;
+
       cursor: pointer;
+
     }
+
 
     .btn-secondary:hover {
+
       background: rgba(255,255,255,.08);
+
       border-color: rgba(255,255,255,.6);
+
     }
 
-    /* =========================
+
+    /* =====================================================
        CARDS
-    ========================= */
+    ====================================================== */
 
     .dark-card {
+
       background: rgba(255,255,255,.045);
+
       border: 1px solid rgba(255,255,255,.09);
+
       border-radius: 24px;
+
+      transition: border-color .25s ease;
+
     }
+
 
     .dark-card:hover {
+
       border-color: rgba(255,255,255,.18);
+
     }
 
-    /* =========================
+
+    /* =====================================================
        NAVIGATION
-    ========================= */
+    ====================================================== */
 
     .nav-link {
+
       position: relative;
+
       color: rgba(243,237,227,.75);
+
       transition: color .2s ease;
+
     }
+
 
     .nav-link:hover {
+
       color: #fff;
+
     }
+
 
     .nav-link::after {
+
       content: "";
+
       position: absolute;
+
       left: 0;
+
       bottom: -7px;
+
       width: 0;
+
       height: 1px;
+
       background: #e8e0d2;
+
       transition: width .25s ease;
+
     }
+
 
     .nav-link:hover::after {
+
       width: 100%;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        HERO
-    ========================= */
+    ====================================================== */
 
     .hero-image {
+
       border-radius: 28px;
+
       overflow: hidden;
+
       position: relative;
+
       min-height: 530px;
+
     }
+
 
     .hero-image img {
+
       width: 100%;
+
       height: 100%;
+
       min-height: 530px;
+
       object-fit: cover;
+
       transition: transform .6s ease;
+
     }
+
 
     .hero-image:hover img {
+
       transform: scale(1.03);
+
     }
 
-    /* =========================
+
+    /* =====================================================
        GALERIE
-    ========================= */
+    ====================================================== */
 
     .art-card {
+
       overflow: hidden;
+
       border-radius: 20px;
+
       background: #38332e;
+
       border: 1px solid rgba(255,255,255,.08);
-      transition: transform .3s ease, border-color .3s ease;
+
+      transition:
+        transform .3s ease,
+        border-color .3s ease;
+
     }
+
 
     .art-card:hover {
+
       transform: translateY(-5px);
+
       border-color: rgba(255,255,255,.2);
+
     }
+
 
     .art-image {
+
       height: 330px;
+
       width: 100%;
+
       object-fit: cover;
+
       display: block;
+
       cursor: pointer;
+
       transition: transform .5s ease;
+
     }
+
 
     .art-card:hover .art-image {
+
       transform: scale(1.025);
+
     }
 
-    /* =========================
+
+    /* =====================================================
        FILTRES
-    ========================= */
+    ====================================================== */
 
     .filter-btn {
+
       border: 1px solid rgba(255,255,255,.15);
+
       color: rgba(243,237,227,.75);
+
       background: transparent;
+
       padding: 8px 16px;
+
       border-radius: 999px;
+
       cursor: pointer;
+
       transition: all .2s ease;
+
     }
+
 
     .filter-btn:hover,
     .filter-btn.active {
+
       background: #e8e0d2;
+
       color: #292724;
+
       border-color: #e8e0d2;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        FORMULAIRES
-    ========================= */
+    ====================================================== */
 
     .input-dark {
+
       width: 100%;
+
       box-sizing: border-box;
+
       background: rgba(255,255,255,.055);
+
       color: #f3ede3;
+
       border: 1px solid rgba(255,255,255,.12);
+
       border-radius: 14px;
+
       padding: 13px 15px;
+
       outline: none;
-      transition: border .2s ease, background .2s ease;
+
+      transition:
+        border .2s ease,
+        background .2s ease;
+
     }
+
 
     .input-dark:focus {
+
       border-color: rgba(232,224,210,.55);
+
       background: rgba(255,255,255,.08);
+
     }
+
 
     .input-dark::placeholder {
+
       color: rgba(243,237,227,.4);
+
     }
 
-    /* =========================
+
+    /* =====================================================
        GUIDE PDF
-    ========================= */
+    ====================================================== */
 
     .pdf-cover {
+
       min-height: 420px;
+
       border-radius: 24px;
+
       background:
+
         linear-gradient(
           145deg,
           rgba(0,0,0,.15),
           rgba(0,0,0,.55)
         ),
+
         url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=85")
         center/cover;
+
       display: flex;
+
       align-items: flex-end;
+
       padding: 28px;
+
       position: relative;
+
       overflow: hidden;
+
     }
+
 
     .pdf-cover::before {
+
       content: "";
+
       position: absolute;
+
       inset: 0;
+
       background: rgba(0,0,0,.2);
+
     }
+
 
     .pdf-cover-content {
+
       position: relative;
+
       z-index: 2;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        PANIER
-    ========================= */
+    ====================================================== */
 
     #cartDrawer {
+
       transition: transform .35s ease;
+
     }
+
 
     .cart-overlay {
+
       transition: opacity .3s ease;
+
     }
+
 
     .cart-item {
+
       border-bottom: 1px solid rgba(255,255,255,.08);
+
       padding: 16px 0;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        MODALE PRODUIT
-    ========================= */
+    ====================================================== */
 
     #productModal {
+
       transition: opacity .3s ease;
+
     }
 
+
+    /*
+      IMPORTANT :
+
+      L'image de fond est volontairement NETTE.
+      Il n'y a plus de blur.
+
+      Elle sert uniquement d'ambiance derrière la fiche
+      produit et reste très discrète grâce à son opacité.
+    */
+
     .product-modal-background {
+
       position: fixed;
-      inset: -30px;
+
+      inset: 0;
+
       z-index: 80;
 
       background-position: center;
+
       background-size: cover;
+
       background-repeat: no-repeat;
 
-      /* FLOU LEGER */
-      filter: blur(3px);
+      filter: none;
 
-      /* Très léger agrandissement */
-      transform: scale(1.03);
+      transform: none;
 
-      /* Image visible mais discrète */
-      opacity: .60;
+      opacity: .14;
 
       pointer-events: none;
+
     }
+
 
     .product-modal-overlay {
+
       position: fixed;
+
       inset: 0;
+
       z-index: 81;
-      background: rgba(20,18,16,.55);
-      backdrop-filter: blur(1px);
+
+      background: rgba(20,18,16,.74);
+
+      backdrop-filter: none;
+
+      -webkit-backdrop-filter: none;
+
     }
+
 
     .product-modal-content {
+
       position: relative;
+
       z-index: 82;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        TOAST
-    ========================= */
+    ====================================================== */
 
     #toast {
+
       position: fixed;
+
       left: 50%;
+
       bottom: 25px;
-      transform: translateX(-50%) translateY(100px);
+
+      transform:
+        translateX(-50%)
+        translateY(100px);
+
       opacity: 0;
+
       transition: all .3s ease;
+
       z-index: 200;
+
     }
+
 
     #toast.show {
-      transform: translateX(-50%) translateY(0);
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+
       opacity: 1;
+
     }
 
-    /* =========================
+
+    /* =====================================================
        MOBILE
-    ========================= */
+    ====================================================== */
 
     @media (max-width: 768px) {
 
       .hero-image,
       .hero-image img {
+
         min-height: 400px;
+
       }
+
 
       .art-image {
+
         height: 280px;
+
       }
 
+
       .pdf-cover {
+
         min-height: 350px;
+
+      }
+
+
+      .product-modal-background {
+
+        opacity: .08;
+
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
+
 
   <!-- =====================================================
        BANNIÈRE / LOGO
@@ -403,6 +686,7 @@
 
       <!--
         PLUS TARD :
+
         Remplace ce bloc par ton image de bannière/logo.
 
         Exemple :
@@ -481,7 +765,9 @@
         </a>
 
 
-        <!-- DESKTOP NAV -->
+        <!-- =================================================
+             NAVIGATION DESKTOP
+        ================================================== -->
 
         <nav class="hidden lg:flex items-center gap-7 text-sm">
 
@@ -495,6 +781,10 @@
 
           <a href="#guide" class="nav-link">
             Le guide
+          </a>
+
+          <a href="#livraison" class="nav-link">
+            Livraison
           </a>
 
           <a href="#personnalise" class="nav-link">
@@ -544,7 +834,9 @@
       </div>
 
 
-      <!-- MOBILE MENU -->
+      <!-- =================================================
+           MOBILE MENU
+      ================================================== -->
 
       <div
         id="mobileMenu"
@@ -553,23 +845,51 @@
 
         <div class="flex flex-col gap-5 text-sm">
 
-          <a href="#galerie" onclick="closeMobileMenu()" class="nav-link">
+          <a
+            href="#galerie"
+            onclick="closeMobileMenu()"
+            class="nav-link"
+          >
             Galerie
           </a>
 
-          <a href="#atelier" onclick="closeMobileMenu()" class="nav-link">
+          <a
+            href="#atelier"
+            onclick="closeMobileMenu()"
+            class="nav-link"
+          >
             L'atelier
           </a>
 
-          <a href="#guide" onclick="closeMobileMenu()" class="nav-link">
+          <a
+            href="#guide"
+            onclick="closeMobileMenu()"
+            class="nav-link"
+          >
             Le guide
           </a>
 
-          <a href="#personnalise" onclick="closeMobileMenu()" class="nav-link">
+          <a
+            href="#livraison"
+            onclick="closeMobileMenu()"
+            class="nav-link"
+          >
+            Livraison
+          </a>
+
+          <a
+            href="#personnalise"
+            onclick="closeMobileMenu()"
+            class="nav-link"
+          >
             Sur mesure
           </a>
 
-          <a href="#contact" onclick="closeMobileMenu()" class="nav-link">
+          <a
+            href="#contact"
+            onclick="closeMobileMenu()"
+            class="nav-link"
+          >
             Contact
           </a>
 
@@ -601,6 +921,7 @@
           <h1 class="text-6xl md:text-7xl lg:text-8xl leading-[.85] mb-8">
 
             Lumière,
+
             <br>
 
             <span class="text-paper/60">
@@ -617,22 +938,35 @@
 
           </p>
 
+
           <div class="flex flex-wrap gap-3">
 
-            <a href="#galerie" class="btn-primary">
+            <a
+              href="#galerie"
+              class="btn-primary"
+            >
+
               Découvrir les œuvres
+
               <i class="fa-solid fa-arrow-down"></i>
+
             </a>
 
-            <a href="#guide" class="btn-secondary">
+
+            <a
+              href="#guide"
+              class="btn-secondary"
+            >
               Voir le guide
             </a>
 
           </div>
 
+
           <div class="grid grid-cols-3 gap-5 mt-12 max-w-lg">
 
             <div>
+
               <p class="font-display text-3xl">
                 100%
               </p>
@@ -640,9 +974,12 @@
               <p class="text-xs text-white/45 mt-1">
                 fait main
               </p>
+
             </div>
 
+
             <div>
+
               <p class="font-display text-3xl">
                 1/1
               </p>
@@ -650,9 +987,12 @@
               <p class="text-xs text-white/45 mt-1">
                 pièce unique
               </p>
+
             </div>
 
+
             <div>
+
               <p class="font-display text-3xl">
                 A5–A3
               </p>
@@ -660,6 +1000,7 @@
               <p class="text-xs text-white/45 mt-1">
                 formats
               </p>
+
             </div>
 
           </div>
@@ -669,14 +1010,14 @@
 
         <div class="hero-image shadow-2xl">
 
-          <!-- IMAGE TEMPORAIRE -->
-
           <img
             src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1400&q=85"
             alt="Atelier artistique"
           >
 
+
           <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
+
 
           <div class="absolute bottom-6 left-6 right-6">
 
@@ -705,7 +1046,10 @@
          GALERIE
     ====================================================== -->
 
-    <section id="galerie" class="bg-inkSoft/60 border-y border-white/5">
+    <section
+      id="galerie"
+      class="bg-inkSoft/60 border-y border-white/5"
+    >
 
       <div class="max-w-7xl mx-auto px-6 py-24">
 
@@ -723,6 +1067,7 @@
 
           </div>
 
+
           <p class="max-w-md text-sm text-white/55 leading-relaxed">
 
             Chaque œuvre est peinte à la main et constitue une pièce unique.
@@ -737,23 +1082,38 @@
 
         <div class="flex flex-wrap gap-2 mb-10">
 
-          <button class="filter-btn active" data-filter="all">
+          <button
+            class="filter-btn active"
+            data-filter="all"
+          >
             Tout
           </button>
 
-          <button class="filter-btn" data-filter="paysages">
+          <button
+            class="filter-btn"
+            data-filter="paysages"
+          >
             Paysages
           </button>
 
-          <button class="filter-btn" data-filter="animaux">
+          <button
+            class="filter-btn"
+            data-filter="animaux"
+          >
             Animaux
           </button>
 
-          <button class="filter-btn" data-filter="marque-pages">
+          <button
+            class="filter-btn"
+            data-filter="marque-pages"
+          >
             Marque-pages
           </button>
 
-          <button class="filter-btn" data-filter="numerique">
+          <button
+            class="filter-btn"
+            data-filter="numerique"
+          >
             Numérique
           </button>
 
@@ -798,33 +1158,47 @@
             </p>
 
             <h2 class="text-5xl md:text-6xl mb-7">
+
               Peindre doucement,
+
               <br>
+
               <span class="text-white/50">
                 observer longtemps.
               </span>
+
             </h2>
+
 
             <div class="space-y-5 text-white/60 leading-relaxed">
 
               <p>
+
                 Mon travail commence toujours par l'observation.
                 Une lumière, une silhouette, un paysage ou un animal
                 peuvent devenir le point de départ d'une nouvelle aquarelle.
+
               </p>
 
+
               <p>
+
                 J'aime laisser l'eau faire une partie du travail :
                 les transparences, les mélanges et les petites irrégularités
                 donnent à chaque œuvre son caractère.
+
               </p>
 
+
               <p>
+
                 Chaque tableau est peint avec soin et préparé pour être
                 emballé et expédié dans les meilleures conditions.
+
               </p>
 
             </div>
+
 
             <div class="grid sm:grid-cols-3 gap-4 mt-10">
 
@@ -842,6 +1216,7 @@
 
               </div>
 
+
               <div class="dark-card p-5">
 
                 <i class="fa-solid fa-paintbrush text-paper/70 mb-4"></i>
@@ -855,6 +1230,7 @@
                 </p>
 
               </div>
+
 
               <div class="dark-card p-5">
 
@@ -885,7 +1261,10 @@
          GUIDE PDF
     ====================================================== -->
 
-    <section id="guide" class="bg-inkSoft/60 border-y border-white/5">
+    <section
+      id="guide"
+      class="bg-inkSoft/60 border-y border-white/5"
+    >
 
       <div class="max-w-7xl mx-auto px-6 py-24">
 
@@ -900,9 +1279,13 @@
               </p>
 
               <h2 class="text-5xl md:text-6xl leading-none mb-4">
+
                 Le guide
+
                 <br>
+
                 du débutant
+
               </h2>
 
               <p class="text-white/70 max-w-md">
@@ -930,6 +1313,7 @@
 
               </div>
 
+
               <div class="text-right shrink-0">
 
                 <p class="text-3xl font-display">
@@ -943,6 +1327,7 @@
               </div>
 
             </div>
+
 
             <p class="text-white/60 leading-relaxed mb-7">
 
@@ -964,6 +1349,7 @@
 
               </div>
 
+
               <div class="flex gap-3">
 
                 <i class="fa-solid fa-check mt-1 text-white/60"></i>
@@ -974,6 +1360,7 @@
 
               </div>
 
+
               <div class="flex gap-3">
 
                 <i class="fa-solid fa-check mt-1 text-white/60"></i>
@@ -983,6 +1370,7 @@
                 </p>
 
               </div>
+
 
               <div class="flex gap-3">
 
@@ -1007,6 +1395,7 @@
 
                 </div>
 
+
                 <div>
 
                   <p class="font-semibold">
@@ -1014,8 +1403,10 @@
                   </p>
 
                   <p class="text-xs text-white/45 mt-1 leading-relaxed">
+
                     Aucun frais de livraison.
                     Le guide sera disponible en téléchargement après le paiement.
+
                   </p>
 
                 </div>
@@ -1060,12 +1451,14 @@
           </p>
 
           <h2 class="text-5xl md:text-6xl mb-5">
-            Livraison & retrait
+            Livraison & retours
           </h2>
 
           <p class="text-white/55 leading-relaxed">
-            Tes œuvres sont soigneusement protégées avant chaque envoi.
-            Le guide PDF est quant à lui disponible en version numérique.
+
+            Les œuvres physiques sont préparées avec soin avant leur expédition.
+            Le guide PDF est un produit numérique et ne nécessite aucun envoi physique.
+
           </p>
 
         </div>
@@ -1083,17 +1476,22 @@
 
             </div>
 
+
             <h3 class="text-3xl mb-2">
               France
             </h3>
+
 
             <p class="text-2xl font-semibold mb-4">
               6,90 €
             </p>
 
+
             <p class="text-sm text-white/50 leading-relaxed">
+
               Livraison suivie en France métropolitaine
               pour les œuvres physiques.
+
             </p>
 
           </div>
@@ -1109,16 +1507,21 @@
 
             </div>
 
+
             <h3 class="text-3xl mb-2">
               Europe
             </h3>
+
 
             <p class="text-2xl font-semibold mb-4">
               12,90 €
             </p>
 
+
             <p class="text-sm text-white/50 leading-relaxed">
+
               Livraison suivie vers les pays européens.
+
             </p>
 
           </div>
@@ -1134,17 +1537,22 @@
 
             </div>
 
+
             <h3 class="text-3xl mb-2">
               Retrait
             </h3>
+
 
             <p class="text-2xl font-semibold mb-4">
               Gratuit
             </p>
 
+
             <p class="text-sm text-white/50 leading-relaxed">
+
               Retrait en main propre si cette option est proposée
               au moment de la commande.
+
             </p>
 
           </div>
@@ -1163,10 +1571,13 @@
             </p>
 
             <p class="text-xs text-white/45 mt-2">
+
               Généralement 2 à 5 jours ouvrés avant expédition.
+
             </p>
 
           </div>
+
 
           <div class="dark-card p-5">
 
@@ -1177,10 +1588,14 @@
             </p>
 
             <p class="text-xs text-white/45 mt-2">
-              Les aquarelles sont protégées pour limiter les risques durant le transport.
+
+              Les aquarelles sont protégées pour limiter les risques
+              durant le transport.
+
             </p>
 
           </div>
+
 
           <div class="dark-card p-5">
 
@@ -1191,8 +1606,51 @@
             </p>
 
             <p class="text-xs text-white/45 mt-2">
+
               Un numéro de suivi pourra être transmis après expédition.
+
             </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="dark-card p-7 mt-8">
+
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+            <div>
+
+              <p class="text-xs uppercase tracking-[.2em] text-white/40 mb-2">
+                Retours
+              </p>
+
+              <h3 class="text-3xl mb-2">
+                Besoin d'informations sur un retour ?
+              </h3>
+
+              <p class="text-sm text-white/50 leading-relaxed max-w-2xl">
+
+                Les conditions applicables aux commandes, aux retours
+                et au droit de rétractation sont détaillées dans les
+                conditions générales de vente.
+
+              </p>
+
+            </div>
+
+
+            <a
+              href="livraison-retours.html"
+              class="btn-secondary shrink-0"
+            >
+
+              Livraison & retours
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
 
           </div>
 
@@ -1207,7 +1665,10 @@
          PERSONNALISATION
     ====================================================== -->
 
-    <section id="personnalise" class="bg-inkSoft/60 border-y border-white/5">
+    <section
+      id="personnalise"
+      class="bg-inkSoft/60 border-y border-white/5"
+    >
 
       <div class="max-w-7xl mx-auto px-6 py-24">
 
@@ -1219,25 +1680,37 @@
               Sur mesure
             </p>
 
+
             <h2 class="text-5xl md:text-6xl mb-7">
+
               Une aquarelle
+
               <br>
+
               rien que pour vous.
+
             </h2>
 
+
             <p class="text-white/60 leading-relaxed mb-7">
+
               Vous avez une idée précise ?
               Un animal, un paysage, un souvenir ou une scène particulière ?
               Décrivez-moi votre projet et nous pourrons en discuter.
+
             </p>
+
 
             <div class="space-y-4">
 
               <div class="flex gap-4">
 
                 <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+
                   <i class="fa-solid fa-1"></i>
+
                 </div>
+
 
                 <div>
 
@@ -1257,8 +1730,11 @@
               <div class="flex gap-4">
 
                 <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+
                   <i class="fa-solid fa-2"></i>
+
                 </div>
+
 
                 <div>
 
@@ -1278,8 +1754,11 @@
               <div class="flex gap-4">
 
                 <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+
                   <i class="fa-solid fa-3"></i>
+
                 </div>
+
 
                 <div>
 
@@ -1426,17 +1905,22 @@
             Contact
           </p>
 
+
           <h2 class="text-5xl md:text-6xl mb-6">
             Une question ?
           </h2>
 
+
           <p class="text-white/55 leading-relaxed mb-8">
+
             Pour une question concernant une œuvre,
             une livraison ou une création personnalisée,
             n'hésitez pas à me contacter.
+
           </p>
 
-          <!-- À REMPLACER PAR TON EMAIL -->
+
+          <!-- À REMPLACER PAR TON EMAIL PROFESSIONNEL -->
 
           <a
             href="mailto:tonemail@example.com"
@@ -1468,19 +1952,27 @@
 
       <div class="grid md:grid-cols-3 gap-10">
 
+
+        <!-- PRESENTATION -->
+
         <div>
 
           <p class="font-display text-3xl">
             Atelier Aquarelle
           </p>
 
+
           <p class="text-sm text-white/40 mt-3 max-w-sm">
+
             Aquarelles originales, créations personnalisées
             et guide numérique pour débuter l'aquarelle.
+
           </p>
 
         </div>
 
+
+        <!-- NAVIGATION -->
 
         <div>
 
@@ -1488,21 +1980,53 @@
             Navigation
           </p>
 
+
           <div class="space-y-2 text-sm">
 
-            <a href="#galerie" class="block text-white/60 hover:text-white">
+            <a
+              href="#galerie"
+              class="block text-white/60 hover:text-white"
+            >
               Galerie
             </a>
 
-            <a href="#guide" class="block text-white/60 hover:text-white">
+
+            <a
+              href="#atelier"
+              class="block text-white/60 hover:text-white"
+            >
+              L'atelier
+            </a>
+
+
+            <a
+              href="#guide"
+              class="block text-white/60 hover:text-white"
+            >
               Guide
             </a>
 
-            <a href="#livraison" class="block text-white/60 hover:text-white">
+
+            <a
+              href="#livraison"
+              class="block text-white/60 hover:text-white"
+            >
               Livraison
             </a>
 
-            <a href="#contact" class="block text-white/60 hover:text-white">
+
+            <a
+              href="#personnalise"
+              class="block text-white/60 hover:text-white"
+            >
+              Sur mesure
+            </a>
+
+
+            <a
+              href="#contact"
+              class="block text-white/60 hover:text-white"
+            >
               Contact
             </a>
 
@@ -1511,11 +2035,14 @@
         </div>
 
 
+        <!-- INFORMATIONS -->
+
         <div>
 
           <p class="text-xs uppercase tracking-[.2em] text-white/40 mb-4">
             Informations
           </p>
+
 
           <div class="space-y-2 text-sm text-white/50">
 
@@ -1531,6 +2058,10 @@
               Créations faites main
             </p>
 
+            <p>
+              Produits numériques disponibles
+            </p>
+
           </div>
 
         </div>
@@ -1538,25 +2069,61 @@
       </div>
 
 
-      <div class="border-t border-white/10 mt-10 pt-7 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/30">
+      <!-- LIENS LEGAUX -->
 
-        <p>
-          © <span id="year"></span> Atelier Aquarelle
-        </p>
+      <div class="border-t border-white/10 mt-10 pt-7">
 
-        <div class="flex gap-5">
+        <div class="flex flex-col md:flex-row justify-between gap-5">
 
-          <a href="#" class="hover:text-white">
-            Mentions légales
-          </a>
+          <p class="text-xs text-white/30">
 
-          <a href="#" class="hover:text-white">
-            CGV
-          </a>
+            © <span id="year"></span> Atelier Aquarelle
 
-          <a href="#" class="hover:text-white">
-            Confidentialité
-          </a>
+          </p>
+
+
+          <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs">
+
+            <a
+              href="mentions-legales.html"
+              class="text-white/40 hover:text-white transition"
+            >
+              Mentions légales
+            </a>
+
+
+            <a
+              href="cgv.html"
+              class="text-white/40 hover:text-white transition"
+            >
+              CGV
+            </a>
+
+
+            <a
+              href="livraison-retours.html"
+              class="text-white/40 hover:text-white transition"
+            >
+              Livraison & retours
+            </a>
+
+
+            <a
+              href="confidentialite.html"
+              class="text-white/40 hover:text-white transition"
+            >
+              Confidentialité
+            </a>
+
+
+            <a
+              href="cookies.html"
+              class="text-white/40 hover:text-white transition"
+            >
+              Cookies
+            </a>
+
+          </div>
 
         </div>
 
@@ -1587,6 +2154,9 @@
     class="fixed top-0 right-0 h-full w-full sm:max-w-md bg-inkSoft z-[100] translate-x-full border-l border-white/10 flex flex-col"
   >
 
+
+    <!-- HEADER PANIER -->
+
     <div class="p-6 border-b border-white/10 flex items-center justify-between">
 
       <div>
@@ -1601,9 +2171,11 @@
 
       </div>
 
+
       <button
         onclick="closeCart()"
         class="w-10 h-10 rounded-full border border-white/10 hover:bg-white/10"
+        aria-label="Fermer le panier"
       >
 
         <i class="fa-solid fa-xmark"></i>
@@ -1621,7 +2193,9 @@
     ></div>
 
 
-    <!-- LIVRAISON -->
+    <!-- =================================================
+         LIVRAISON PANIER
+    ================================================== -->
 
     <div
       id="shippingSection"
@@ -1635,6 +2209,9 @@
 
       <div class="space-y-3">
 
+
+        <!-- FRANCE -->
+
         <label
           class="flex items-start gap-3 p-3 rounded-xl border border-white/10 cursor-pointer hover:bg-white/5"
         >
@@ -1647,6 +2224,7 @@
             onchange="updateCartTotals()"
             class="mt-1"
           >
+
 
           <div class="flex-1">
 
@@ -1662,6 +2240,7 @@
 
             </div>
 
+
             <p class="text-[11px] text-white/35 mt-1">
               Livraison suivie
             </p>
@@ -1670,6 +2249,8 @@
 
         </label>
 
+
+        <!-- EUROPE -->
 
         <label
           class="flex items-start gap-3 p-3 rounded-xl border border-white/10 cursor-pointer hover:bg-white/5"
@@ -1682,6 +2263,7 @@
             onchange="updateCartTotals()"
             class="mt-1"
           >
+
 
           <div class="flex-1">
 
@@ -1697,6 +2279,7 @@
 
             </div>
 
+
             <p class="text-[11px] text-white/35 mt-1">
               Livraison suivie
             </p>
@@ -1705,6 +2288,8 @@
 
         </label>
 
+
+        <!-- RETRAIT -->
 
         <label
           class="flex items-start gap-3 p-3 rounded-xl border border-white/10 cursor-pointer hover:bg-white/5"
@@ -1717,6 +2302,7 @@
             onchange="updateCartTotals()"
             class="mt-1"
           >
+
 
           <div class="flex-1">
 
@@ -1731,6 +2317,7 @@
               </span>
 
             </div>
+
 
             <p class="text-[11px] text-white/35 mt-1">
               Selon disponibilité
@@ -1755,8 +2342,10 @@
           <i class="fa-solid fa-download text-white/50 mt-1"></i>
 
           <p class="text-xs text-white/50 leading-relaxed">
+
             Votre panier contient uniquement un produit numérique.
             Aucun frais de livraison ne sera ajouté.
+
           </p>
 
         </div>
@@ -1766,11 +2355,14 @@
     </div>
 
 
-    <!-- TOTAL -->
+    <!-- =================================================
+         TOTAL
+    ================================================== -->
 
     <div class="border-t border-white/10 p-6">
 
       <div class="space-y-3 mb-5">
+
 
         <div class="flex justify-between text-sm text-white/50">
 
@@ -1850,7 +2442,8 @@
     class="fixed inset-0 z-[70] hidden opacity-0"
   >
 
-    <!-- IMAGE FLOUTÉE -->
+
+    <!-- IMAGE DE FOND NETTE -->
 
     <div
       id="productModalBackground"
@@ -1876,6 +2469,7 @@
       >
 
         <div class="grid lg:grid-cols-2">
+
 
           <!-- IMAGE NETTE -->
 
@@ -1904,6 +2498,7 @@
                   class="text-xs uppercase tracking-[.25em] text-white/40 mb-3"
                 ></p>
 
+
                 <h2
                   id="modalTitle"
                   class="text-5xl md:text-6xl leading-none"
@@ -1915,6 +2510,7 @@
               <button
                 onclick="closeProductModal()"
                 class="w-11 h-11 rounded-full border border-white/10 hover:bg-white/10 shrink-0"
+                aria-label="Fermer"
               >
 
                 <i class="fa-solid fa-xmark"></i>
@@ -1931,6 +2527,7 @@
 
 
             <div class="grid grid-cols-2 gap-4 mb-8">
+
 
               <div class="dark-card p-4">
 
@@ -2027,11 +2624,13 @@
 
   <script>
 
+
     /* =====================================================
        DONNÉES DES PRODUITS
     ====================================================== */
 
     const artworks = [
+
 
       {
         id: "paysage-1",
@@ -2044,6 +2643,7 @@
         image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85"
       },
 
+
       {
         id: "animal-1",
         title: "Renard sauvage",
@@ -2054,6 +2654,7 @@
         description: "Un portrait animalier peint à l'aquarelle, avec une attention particulière portée au regard et aux nuances du pelage.",
         image: "https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1200&q=85"
       },
+
 
       {
         id: "paysage-2",
@@ -2066,6 +2667,7 @@
         image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85"
       },
 
+
       {
         id: "animal-2",
         title: "Petit compagnon",
@@ -2076,6 +2678,7 @@
         description: "Une aquarelle personnalisable représentant un petit compagnon dans un style doux et naturel.",
         image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&q=85"
       },
+
 
       {
         id: "bookmark-1",
@@ -2088,6 +2691,7 @@
         image: "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1200&q=85"
       },
 
+
       {
         id: "bookmark-2",
         title: "Fleurs sauvages",
@@ -2098,6 +2702,7 @@
         description: "Une petite composition florale délicate réalisée à l'aquarelle.",
         image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=85"
       },
+
 
       {
         id: "pdf-guide",
@@ -2117,7 +2722,10 @@
        PANIER
     ====================================================== */
 
-    let cart = JSON.parse(localStorage.getItem("atelierAquarelleCart")) || [];
+    let cart =
+      JSON.parse(
+        localStorage.getItem("atelierAquarelleCart")
+      ) || [];
 
 
     /* =====================================================
@@ -2126,10 +2734,13 @@
 
     function formatPrice(price) {
 
-      return new Intl.NumberFormat("fr-FR", {
-        style: "currency",
-        currency: "EUR"
-      }).format(price);
+      return new Intl.NumberFormat(
+        "fr-FR",
+        {
+          style: "currency",
+          currency: "EUR"
+        }
+      ).format(price);
 
     }
 
@@ -2154,7 +2765,9 @@
 
     function getProduct(id) {
 
-      return artworks.find(item => item.id === id);
+      return artworks.find(
+        item => item.id === id
+      );
 
     }
 
@@ -2170,12 +2783,17 @@
       if (!product) return;
 
 
-      const exists = cart.find(item => item.id === id);
+      const exists =
+        cart.find(
+          item => item.id === id
+        );
 
 
       if (exists) {
 
-        showToast("Cet article est déjà dans ton panier.");
+        showToast(
+          "Cet article est déjà dans ton panier."
+        );
 
         return;
 
@@ -2183,8 +2801,11 @@
 
 
       cart.push({
+
         id: product.id,
+
         quantity: 1
+
       });
 
 
@@ -2192,7 +2813,9 @@
 
       renderCart();
 
-      showToast("Produit ajouté au panier.");
+      showToast(
+        "Produit ajouté au panier."
+      );
 
       closeProductModal();
 
@@ -2205,7 +2828,11 @@
 
     function removeFromCart(id) {
 
-      cart = cart.filter(item => item.id !== id);
+      cart =
+        cart.filter(
+          item => item.id !== id
+        );
+
 
       saveCart();
 
@@ -2220,15 +2847,27 @@
 
     function getSubtotal() {
 
-      return cart.reduce((total, item) => {
+      return cart.reduce(
 
-        const product = getProduct(item.id);
+        (total, item) => {
 
-        if (!product) return total;
+          const product =
+            getProduct(item.id);
 
-        return total + product.price * item.quantity;
+          if (!product) {
+            return total;
+          }
 
-      }, 0);
+
+          return total +
+            product.price *
+            item.quantity;
+
+        },
+
+        0
+
+      );
 
     }
 
@@ -2239,13 +2878,21 @@
 
     function cartHasPhysicalProducts() {
 
-      return cart.some(item => {
+      return cart.some(
 
-        const product = getProduct(item.id);
+        item => {
 
-        return product && product.category !== "numerique";
+          const product =
+            getProduct(item.id);
 
-      });
+          return (
+            product &&
+            product.category !== "numerique"
+          );
+
+        }
+
+      );
 
     }
 
@@ -2263,9 +2910,10 @@
       }
 
 
-      const selected = document.querySelector(
-        'input[name="shipping"]:checked'
-      );
+      const selected =
+        document.querySelector(
+          'input[name="shipping"]:checked'
+        );
 
 
       if (!selected) {
@@ -2300,11 +2948,20 @@
 
     function renderCart() {
 
-      const container = document.getElementById("cartItems");
+      const container =
+        document.getElementById(
+          "cartItems"
+        );
 
-      const count = document.getElementById("cartCount");
 
-      count.textContent = cart.length;
+      const count =
+        document.getElementById(
+          "cartCount"
+        );
+
+
+      count.textContent =
+        cart.length;
 
 
       if (cart.length === 0) {
@@ -2319,9 +2976,11 @@
 
             </div>
 
+
             <h3 class="text-3xl mb-2">
               Ton panier est vide
             </h3>
+
 
             <p class="text-sm text-white/40">
               Ajoute une œuvre ou le guide pour commencer.
@@ -2331,6 +2990,7 @@
 
         `;
 
+
         updateCartTotals();
 
         return;
@@ -2338,82 +2998,95 @@
       }
 
 
-      container.innerHTML = cart.map(item => {
+      container.innerHTML =
 
-        const product = getProduct(item.id);
+        cart.map(
 
-        if (!product) return "";
+          item => {
 
-
-        return `
-
-          <div class="cart-item">
-
-            <div class="flex gap-4">
-
-              <img
-                src="${product.image}"
-                alt="${product.title}"
-                class="w-20 h-20 rounded-xl object-cover"
-              >
-
-              <div class="flex-1">
-
-                <div class="flex justify-between gap-3">
-
-                  <div>
-
-                    <p class="font-semibold text-sm">
-                      ${product.title}
-                    </p>
-
-                    <p class="text-xs text-white/40 mt-1">
-                      ${product.type}
-                    </p>
-
-                  </div>
-
-                  <p class="font-semibold text-sm whitespace-nowrap">
-                    ${formatPrice(product.price)}
-                  </p>
-
-                </div>
+            const product =
+              getProduct(item.id);
 
 
-                <div class="flex items-center justify-between mt-4">
-
-                  <p class="text-xs text-white/35">
-
-                    ${
-                      product.category === "numerique"
-                        ? "Téléchargement numérique"
-                        : "Produit physique"
-                    }
-
-                  </p>
+            if (!product) {
+              return "";
+            }
 
 
-                  <button
-                    onclick="removeFromCart('${product.id}')"
-                    class="text-xs text-white/35 hover:text-white"
+            return `
+
+              <div class="cart-item">
+
+                <div class="flex gap-4">
+
+                  <img
+                    src="${product.image}"
+                    alt="${product.title}"
+                    class="w-20 h-20 rounded-xl object-cover"
                   >
 
-                    <i class="fa-solid fa-trash"></i>
-                    Retirer
 
-                  </button>
+                  <div class="flex-1">
+
+                    <div class="flex justify-between gap-3">
+
+                      <div>
+
+                        <p class="font-semibold text-sm">
+                          ${product.title}
+                        </p>
+
+                        <p class="text-xs text-white/40 mt-1">
+                          ${product.type}
+                        </p>
+
+                      </div>
+
+
+                      <p class="font-semibold text-sm whitespace-nowrap">
+                        ${formatPrice(product.price)}
+                      </p>
+
+                    </div>
+
+
+                    <div class="flex items-center justify-between mt-4">
+
+                      <p class="text-xs text-white/35">
+
+                        ${
+                          product.category === "numerique"
+                            ? "Téléchargement numérique"
+                            : "Produit physique"
+                        }
+
+                      </p>
+
+
+                      <button
+                        onclick="removeFromCart('${product.id}')"
+                        class="text-xs text-white/35 hover:text-white"
+                      >
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Retirer
+
+                      </button>
+
+                    </div>
+
+                  </div>
 
                 </div>
 
               </div>
 
-            </div>
+            `;
 
-          </div>
+          }
 
-        `;
-
-      }).join("");
+        ).join("");
 
 
       updateCartTotals();
@@ -2427,49 +3100,90 @@
 
     function updateCartTotals() {
 
-      const subtotal = getSubtotal();
-
-      const physical = cartHasPhysicalProducts();
-
-      const shippingSection = document.getElementById("shippingSection");
-
-      const digitalMessage = document.getElementById("digitalShippingMessage");
-
-      const shipping = getShippingCost();
-
-      const total = subtotal + shipping;
+      const subtotal =
+        getSubtotal();
 
 
-      document.getElementById("cartSubtotal").textContent =
+      const physical =
+        cartHasPhysicalProducts();
+
+
+      const shippingSection =
+        document.getElementById(
+          "shippingSection"
+        );
+
+
+      const digitalMessage =
+        document.getElementById(
+          "digitalShippingMessage"
+        );
+
+
+      const shipping =
+        getShippingCost();
+
+
+      const total =
+        subtotal + shipping;
+
+
+      document.getElementById(
+        "cartSubtotal"
+      ).textContent =
         formatPrice(subtotal);
 
-      document.getElementById("cartShipping").textContent =
+
+      document.getElementById(
+        "cartShipping"
+      ).textContent =
         formatPrice(shipping);
 
-      document.getElementById("cartTotal").textContent =
+
+      document.getElementById(
+        "cartTotal"
+      ).textContent =
         formatPrice(total);
 
 
-      if (!physical && cart.length > 0) {
+      if (
+        !physical &&
+        cart.length > 0
+      ) {
 
-        shippingSection.classList.add("hidden");
+        shippingSection.classList.add(
+          "hidden"
+        );
 
-        digitalMessage.classList.remove("hidden");
+
+        digitalMessage.classList.remove(
+          "hidden"
+        );
 
       } else {
 
-        shippingSection.classList.remove("hidden");
+        shippingSection.classList.remove(
+          "hidden"
+        );
 
-        digitalMessage.classList.add("hidden");
+
+        digitalMessage.classList.add(
+          "hidden"
+        );
 
       }
 
 
       if (cart.length === 0) {
 
-        shippingSection.classList.add("hidden");
+        shippingSection.classList.add(
+          "hidden"
+        );
 
-        digitalMessage.classList.add("hidden");
+
+        digitalMessage.classList.add(
+          "hidden"
+        );
 
       }
 
@@ -2484,13 +3198,20 @@
 
       document
         .getElementById("cartDrawer")
-        .classList.remove("translate-x-full");
+        .classList.remove(
+          "translate-x-full"
+        );
+
 
       document
         .getElementById("cartOverlay")
-        .classList.remove("hidden");
+        .classList.remove(
+          "hidden"
+        );
 
-      document.body.style.overflow = "hidden";
+
+      document.body.style.overflow =
+        "hidden";
 
     }
 
@@ -2503,13 +3224,20 @@
 
       document
         .getElementById("cartDrawer")
-        .classList.add("translate-x-full");
+        .classList.add(
+          "translate-x-full"
+        );
+
 
       document
         .getElementById("cartOverlay")
-        .classList.add("hidden");
+        .classList.add(
+          "hidden"
+        );
 
-      document.body.style.overflow = "";
+
+      document.body.style.overflow =
+        "";
 
     }
 
@@ -2518,98 +3246,121 @@
        GALERIE
     ====================================================== */
 
-    function renderGallery(filter = "all") {
+    function renderGallery(
+      filter = "all"
+    ) {
 
-      const grid = document.getElementById("galleryGrid");
-
-
-      const filtered = artworks.filter(product => {
-
-        if (filter === "all") return true;
-
-        return product.category === filter;
-
-      });
+      const grid =
+        document.getElementById(
+          "galleryGrid"
+        );
 
 
-      grid.innerHTML = filtered.map(product => {
+      const filtered =
+        artworks.filter(
 
-        return `
+          product => {
 
-          <article class="art-card">
+            if (filter === "all") {
+              return true;
+            }
 
-            <div class="relative">
+            return product.category === filter;
 
-              <img
-                src="${product.image}"
-                alt="${product.title}"
-                class="art-image"
-                onclick="openProductModal('${product.id}')"
-              >
+          }
 
-
-              <span class="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md text-[10px] uppercase tracking-[.15em] border border-white/10">
-                ${product.categoryLabel}
-              </span>
-
-            </div>
+        );
 
 
-            <div class="p-5">
+      grid.innerHTML =
 
-              <div class="flex items-start justify-between gap-4">
+        filtered.map(
 
-                <div>
+          product => {
 
-                  <h3 class="text-3xl">
-                    ${product.title}
-                  </h3>
+            return `
 
-                  <p class="text-xs text-white/40 mt-1">
-                    ${product.type}
-                  </p>
+              <article class="art-card">
+
+                <div class="relative">
+
+                  <img
+                    src="${product.image}"
+                    alt="${product.title}"
+                    class="art-image"
+                    onclick="openProductModal('${product.id}')"
+                  >
+
+
+                  <span class="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md text-[10px] uppercase tracking-[.15em] border border-white/10">
+
+                    ${product.categoryLabel}
+
+                  </span>
 
                 </div>
 
-                <p class="font-semibold whitespace-nowrap">
-                  ${formatPrice(product.price)}
-                </p>
 
-              </div>
+                <div class="p-5">
 
+                  <div class="flex items-start justify-between gap-4">
 
-              <div class="flex items-center justify-between mt-5">
+                    <div>
 
-                <button
-                  onclick="openProductModal('${product.id}')"
-                  class="text-xs text-white/55 hover:text-white"
-                >
-
-                  Voir les détails
-                  <i class="fa-solid fa-arrow-right ml-1"></i>
-
-                </button>
+                      <h3 class="text-3xl">
+                        ${product.title}
+                      </h3>
 
 
-                <button
-                  onclick="addToCart('${product.id}')"
-                  class="w-10 h-10 rounded-full border border-white/10 hover:bg-white/10"
-                  aria-label="Ajouter au panier"
-                >
+                      <p class="text-xs text-white/40 mt-1">
+                        ${product.type}
+                      </p>
 
-                  <i class="fa-solid fa-plus"></i>
+                    </div>
 
-                </button>
 
-              </div>
+                    <p class="font-semibold whitespace-nowrap">
+                      ${formatPrice(product.price)}
+                    </p>
 
-            </div>
+                  </div>
 
-          </article>
 
-        `;
+                  <div class="flex items-center justify-between mt-5">
 
-      }).join("");
+                    <button
+                      onclick="openProductModal('${product.id}')"
+                      class="text-xs text-white/55 hover:text-white"
+                    >
+
+                      Voir les détails
+
+                      <i class="fa-solid fa-arrow-right ml-1"></i>
+
+                    </button>
+
+
+                    <button
+                      onclick="addToCart('${product.id}')"
+                      class="w-10 h-10 rounded-full border border-white/10 hover:bg-white/10"
+                      aria-label="Ajouter au panier"
+                    >
+
+                      <i class="fa-solid fa-plus"></i>
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </article>
+
+            `;
+
+          }
+
+        ).join("");
 
     }
 
@@ -2620,56 +3371,111 @@
 
     function openProductModal(id) {
 
-      const product = getProduct(id);
+      const product =
+        getProduct(id);
 
-      if (!product) return;
+
+      if (!product) {
+        return;
+      }
 
 
-      document.getElementById("modalImage").src = product.image;
+      document.getElementById(
+        "modalImage"
+      ).src =
+        product.image;
 
-      document.getElementById("modalImage").alt = product.title;
 
-      document.getElementById("modalTitle").textContent = product.title;
+      document.getElementById(
+        "modalImage"
+      ).alt =
+        product.title;
 
-      document.getElementById("modalCategory").textContent =
+
+      document.getElementById(
+        "modalTitle"
+      ).textContent =
+        product.title;
+
+
+      document.getElementById(
+        "modalCategory"
+      ).textContent =
         product.categoryLabel;
 
-      document.getElementById("modalDescription").textContent =
+
+      document.getElementById(
+        "modalDescription"
+      ).textContent =
         product.description;
 
-      document.getElementById("modalType").textContent =
+
+      document.getElementById(
+        "modalType"
+      ).textContent =
         product.type;
 
-      document.getElementById("modalPrice").textContent =
+
+      document.getElementById(
+        "modalPrice"
+      ).textContent =
         formatPrice(product.price);
 
 
-      document.getElementById("productModalBackground").style.backgroundImage =
+      /*
+        Image de fond :
+
+        Elle reste nette.
+        Son opacité est simplement réduite
+        pour garder le contenu lisible.
+      */
+
+      document.getElementById(
+        "productModalBackground"
+      ).style.backgroundImage =
         `url("${product.image}")`;
 
 
-      const button = document.getElementById("modalAddButton");
-
-      button.onclick = function() {
-
-        addToCart(product.id);
-
-      };
+      const button =
+        document.getElementById(
+          "modalAddButton"
+        );
 
 
-      const modal = document.getElementById("productModal");
+      button.onclick =
+        function() {
 
-      modal.classList.remove("hidden");
+          addToCart(product.id);
 
-
-      requestAnimationFrame(() => {
-
-        modal.classList.remove("opacity-0");
-
-      });
+        };
 
 
-      document.body.style.overflow = "hidden";
+      const modal =
+        document.getElementById(
+          "productModal"
+        );
+
+
+      modal.classList.remove(
+        "hidden"
+      );
+
+
+      requestAnimationFrame(
+
+        () => {
+
+          modal.classList.remove(
+            "opacity-0"
+          );
+
+        }
+
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
 
     }
 
@@ -2680,17 +3486,34 @@
 
     function closeProductModal() {
 
-      const modal = document.getElementById("productModal");
+      const modal =
+        document.getElementById(
+          "productModal"
+        );
 
-      modal.classList.add("opacity-0");
 
-      setTimeout(() => {
+      modal.classList.add(
+        "opacity-0"
+      );
 
-        modal.classList.add("hidden");
 
-      }, 300);
+      setTimeout(
 
-      document.body.style.overflow = "";
+        () => {
+
+          modal.classList.add(
+            "hidden"
+          );
+
+        },
+
+        300
+
+      );
+
+
+      document.body.style.overflow =
+        "";
 
     }
 
@@ -2703,7 +3526,9 @@
 
       if (cart.length === 0) {
 
-        showToast("Ton panier est vide.");
+        showToast(
+          "Ton panier est vide."
+        );
 
         return;
 
@@ -2723,18 +3548,35 @@
       */
 
 
-      const subtotal = getSubtotal();
+      const subtotal =
+        getSubtotal();
 
-      const shipping = getShippingCost();
 
-      const total = subtotal + shipping;
+      const shipping =
+        getShippingCost();
+
+
+      const total =
+        subtotal + shipping;
 
 
       alert(
+
         "Paiement à connecter à Stripe.\n\n" +
-        "Sous-total : " + formatPrice(subtotal) + "\n" +
-        "Livraison : " + formatPrice(shipping) + "\n" +
-        "Total : " + formatPrice(total)
+
+        "Sous-total : " +
+        formatPrice(subtotal) +
+
+        "\n" +
+
+        "Livraison : " +
+        formatPrice(shipping) +
+
+        "\n" +
+
+        "Total : " +
+        formatPrice(total)
+
       );
 
     }
@@ -2748,7 +3590,9 @@
 
       document
         .getElementById("mobileMenu")
-        .classList.toggle("hidden");
+        .classList.toggle(
+          "hidden"
+        );
 
     }
 
@@ -2757,7 +3601,9 @@
 
       document
         .getElementById("mobileMenu")
-        .classList.add("hidden");
+        .classList.add(
+          "hidden"
+        );
 
     }
 
@@ -2771,21 +3617,40 @@
 
     function showToast(message) {
 
-      const toast = document.getElementById("toast");
-
-      toast.textContent = message;
-
-      toast.classList.add("show");
-
-
-      clearTimeout(toastTimer);
+      const toast =
+        document.getElementById(
+          "toast"
+        );
 
 
-      toastTimer = setTimeout(() => {
+      toast.textContent =
+        message;
 
-        toast.classList.remove("show");
 
-      }, 2500);
+      toast.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      toastTimer =
+        setTimeout(
+
+          () => {
+
+            toast.classList.remove(
+              "show"
+            );
+
+          },
+
+          2500
+
+        );
 
     }
 
@@ -2796,15 +3661,25 @@
 
     document
       .getElementById("customForm")
-      .addEventListener("submit", function(event) {
+      .addEventListener(
 
-        event.preventDefault();
+        "submit",
 
-        showToast("Ta demande a bien été préparée.");
+        function(event) {
 
-        this.reset();
+          event.preventDefault();
 
-      });
+
+          showToast(
+            "Ta demande a bien été préparée."
+          );
+
+
+          this.reset();
+
+        }
+
+      );
 
 
     /* =====================================================
@@ -2813,53 +3688,81 @@
 
     document
       .querySelectorAll(".filter-btn")
-      .forEach(button => {
+      .forEach(
 
-        button.addEventListener("click", function() {
+        button => {
 
-          document
-            .querySelectorAll(".filter-btn")
-            .forEach(btn => {
+          button.addEventListener(
 
-              btn.classList.remove("active");
+            "click",
 
-            });
+            function() {
+
+              document
+                .querySelectorAll(".filter-btn")
+                .forEach(
+
+                  btn => {
+
+                    btn.classList.remove(
+                      "active"
+                    );
+
+                  }
+
+                );
 
 
-          this.classList.add("active");
+              this.classList.add(
+                "active"
+              );
 
 
-          renderGallery(
-            this.dataset.filter
+              renderGallery(
+                this.dataset.filter
+              );
+
+            }
+
           );
 
-        });
+        }
 
-      });
+      );
 
 
     /* =====================================================
        ESCAPE
     ====================================================== */
 
-    document.addEventListener("keydown", function(event) {
+    document.addEventListener(
 
-      if (event.key === "Escape") {
+      "keydown",
 
-        closeProductModal();
+      function(event) {
 
-        closeCart();
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeProductModal();
+
+          closeCart();
+
+        }
 
       }
 
-    });
+    );
 
 
     /* =====================================================
        ANNÉE
     ====================================================== */
 
-    document.getElementById("year").textContent =
+    document.getElementById(
+      "year"
+    ).textContent =
       new Date().getFullYear();
 
 
